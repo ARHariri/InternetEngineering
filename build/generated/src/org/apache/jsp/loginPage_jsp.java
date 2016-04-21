@@ -49,7 +49,7 @@ public final class loginPage_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
       out.write("        <meta charset=\"utf-8\"/>\n");
-      out.write("\t<title>Site Name</title>\n");
+      out.write("\t<title>جاب یاب | شبکه اجتماعی کاریابی</title>\n");
       out.write("\t<link rel=\"stylesheet\" type=\"text/css\" href=\"references/css/bootstrap.css\">\n");
       out.write("\t<link rel=\"stylesheet\" type=\"text/css\" href=\"references/css/bootstrap.min.css\">\n");
       out.write("\t<link rel=\"stylesheet\" type=\"text/css\" href=\"references/css/bootstrap-theme.css\">\n");

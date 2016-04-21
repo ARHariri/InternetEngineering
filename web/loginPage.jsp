@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="utf-8"/>
-	<title>Site Name</title>
+	<title>جاب یاب | شبکه اجتماعی کاریابی</title>
 	<link rel="stylesheet" type="text/css" href="references/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="references/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="references/css/bootstrap-theme.css">
@@ -32,7 +32,7 @@
 				<!--</div>-->
 				<div class="navbar-collapse collapse">
 					<!--<div class="nav navbar-nav navbar-right">-->
-					<form name="loginForm" class="navbar-form navbar-right" action="#" method="post">
+					<form name="loginForm" class="navbar-form navbar-right" action="LoginController" method="post">
 						<a class="control-label persian-label persian-text persian-link" href="#">رمز عبور خود را فراموش کرده ام</a>	
 						<input type="text" class="form-control persian-label persian-textbox" name="username" placeholder="ایمیل ..."/>
 						<input type="password" class="form-control persian-label persian-textbox" id="loginPassword" name="password" placeholder="رمز عبور..."/>
