@@ -19,5 +19,8 @@ public class User {
         this.password = pwd;
         this.type = type;
     }
+    public String getUsername(){
+        return username;
+    }
     
 }

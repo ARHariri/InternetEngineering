@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class loginPage_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -71,7 +71,7 @@ public final class loginPage_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\t<!--</div>-->\n");
       out.write("\t\t\t\t<div class=\"navbar-collapse collapse\">\n");
       out.write("\t\t\t\t\t<!--<div class=\"nav navbar-nav navbar-right\">-->\n");
-      out.write("\t\t\t\t\t<form name=\"loginForm\" class=\"navbar-form navbar-right\" action=\"#\" method=\"post\">\n");
+      out.write("\t\t\t\t\t<form name=\"loginForm\" class=\"navbar-form navbar-right\" action=\"LoginController\" method=\"post\">\n");
       out.write("\t\t\t\t\t\t<a class=\"control-label persian-label persian-text persian-link\" href=\"#\">رمز عبور خود را فراموش کرده ام</a>\t\n");
       out.write("\t\t\t\t\t\t<input type=\"text\" class=\"form-control persian-label persian-textbox\" name=\"username\" placeholder=\"ایمیل ...\"/>\n");
       out.write("\t\t\t\t\t\t<input type=\"password\" class=\"form-control persian-label persian-textbox\" id=\"loginPassword\" name=\"password\" placeholder=\"رمز عبور...\"/>\n");
