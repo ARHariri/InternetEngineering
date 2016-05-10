@@ -1,0 +1,58 @@
+@font-face
+{
+	font-family: persianButtonLabel;
+	src: url(../fonts/IRAN-Sans.ttf);
+}
+
+@font-face
+{
+	font-family: IRB;
+	src: url(../fonts/IRAN-Sans-Bold.ttf);
+}
+
+.persian-label
+{
+	font-family: persianButtonLabel;
+	text-align: right;
+	text-decoration: none;
+	direction: rtl;
+}
+
+.persian-btn
+{
+	font-size: 16px;
+	font-style: bold;
+	text-align: center;
+}
+
+.persian-textbox
+{
+	font-size: 14px;
+}	
+
+.persian-text
+{
+	font-size: 14px;	
+}
+
+.persian-link
+{
+	font-size: 11px;
+}
+
+.persian-form
+{
+	direction: rtl;
+}
+
+.error-message
+{
+	font-size: 11px;
+	color: red;
+}
+
+.persian-heading
+{
+	font-size: 30px;
+	color: white;
+}
