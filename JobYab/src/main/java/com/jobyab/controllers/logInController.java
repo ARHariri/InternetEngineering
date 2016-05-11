@@ -20,7 +20,6 @@ import com.jobyab.models.*;
  *
  * @author Ali
  */
-@WebServlet(name = "logInController", urlPatterns = {"/logInController"})
 public class logInController extends HttpServlet {
 
     public logInController()
@@ -46,7 +45,7 @@ public class logInController extends HttpServlet {
         
         jobSeeker js = new jobSeeker("Ali", "Alavi", new Date(), email, password);
         
-        RequestDispatcher rd = request.getRequestDispatcher("/mainpage.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/mainPage.jsp");
         rd.forward(request, response);
     }
 }
