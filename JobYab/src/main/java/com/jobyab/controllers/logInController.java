@@ -43,8 +43,9 @@ public class logInController extends HttpServlet {
         String email = request.getParameter("loginemail");
         String password = request.getParameter("loginpassword");
         
-        jobSeeker js = new jobSeeker("Ali", "Alavi", new Date(), email, password);
+        user u = new user(email, password, userType.type.jobSeeker, "", "", "Ali", "Alavi", new Date());
         
+        request.setAttribute("user", u);
         RequestDispatcher rd = request.getRequestDispatcher("/mainPage.jsp");
         rd.forward(request, response);
     }

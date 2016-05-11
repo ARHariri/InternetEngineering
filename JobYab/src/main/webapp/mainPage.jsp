@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="com.jobyab.models.user"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +46,12 @@
 								</button>
 							</li>
 							<li>
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="UserName"> </a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="UserName">
+                                                                    <% 
+                                                                        user bean = (user) request.getAttribute("user"); 
+                                                                        out.print(bean.getFirstName() + " " + bean.getLastName());
+                                                                    %>
+                                                                </a>
 								<ul class="dropdown-menu">
 			                        <li align="center">
 										<img class="pic" src="references/images/user-default.png" width="auto" height="auto">
@@ -270,7 +276,7 @@
 <script type="text/javascript">
 	window.onload = function()
 	{
-		document.getElementById("UserName").innerHTML = "Ali Alavi";
+		//document.getElementById("UserName").innerHTML = "Ali Alavi";
 
 		var b = document.createElement('B');
 		b.className = "caret";
