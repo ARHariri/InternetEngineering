@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.controllers;
+package com.jobyab.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,13 +16,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ali
  */
-public class indexController extends HttpServlet {
+public class registerController extends HttpServlet {
 
-    public indexController()
-    {
-        super();
-    }
-
+    
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -36,6 +33,6 @@ public class indexController extends HttpServlet {
             throws ServletException, IOException {
         
         
-        
     }
+    
 }

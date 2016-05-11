@@ -33,10 +33,10 @@
 				<!--</div>-->
 				<div class="navbar-collapse collapse">
 					<!--<div class="nav navbar-nav navbar-right">-->
-					<form name="loginForm" class="navbar-form navbar-right" action="#" method="post">
+					<form name="loginForm" class="navbar-form navbar-right" action="logInController" method="post">
 						<a class="control-label persian-label persian-text persian-link" href="#">رمز عبور خود را فراموش کرده ام</a>	
-						<input type="text" class="form-control persian-label persian-textbox" name="username" placeholder="ایمیل ..."/>
-						<input type="password" class="form-control persian-label persian-textbox" id="loginPassword" name="password" placeholder="رمز عبور..."/>
+						<input type="text" class="form-control persian-label persian-textbox" name="loginemail" placeholder="ایمیل ..."/>
+						<input type="password" class="form-control persian-label persian-textbox" id="loginPassword" name="loginpassword" placeholder="رمز عبور..."/>
 						<input type="submit" class="btn btn-default persian-label persian-btn" value="ورود" />
 					</form>
 					<!--</div>-->
