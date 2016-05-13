@@ -1,0 +1,5 @@
+com\jobyab\models\userType.class
+com\jobyab\controllers\logInController.class
+com\jobyab\controllers\registerController.class
+com\jobyab\models\user.class
+com\jobyab\models\userType$type.class
