@@ -33,7 +33,7 @@
 				<!--</div>-->
 				<div class="navbar-collapse collapse">
 					<!--<div class="nav navbar-nav navbar-right">-->
-					<form name="loginForm" class="navbar-form navbar-right" action="logInController" method="post">
+					<form name="loginForm" class="navbar-form navbar-right" action="login" method="post">
 						<a class="control-label persian-label persian-text persian-link" href="#">رمز عبور خود را فراموش کرده ام</a>	
 						<input type="text" class="form-control persian-label persian-textbox" name="loginemail" placeholder="ایمیل ..."/>
 						<input type="password" class="form-control persian-label persian-textbox" id="loginPassword" name="loginpassword" placeholder="رمز عبور..."/>
@@ -52,14 +52,14 @@
 					<div class="form-group form-group-lg">
 						<label class="col-lg-5 contol-label persian-label error-message" id="emailError" style="visibility: hidden;">خطا</label>
 						<div class="col-lg-7">
-							<input type="email" class="form-control persian-label persian-textbox" name="register_email" placeholder="ایمیل ..."/>
+							<input type="email" class="form-control persian-label persian-textbox" name="email" placeholder="ایمیل ..."/>
 						</div>
 					</div>
 
 					<div class="form-group form-group-lg">
 						<label class="col-lg-5 contol-label persian-label error-message" id="passwordError" style="visibility: hidden;">خطا</label>
 						<div class="col-lg-7">
-							<input type="password" class="form-control persian-label persian-textbox" id="registerPassword" name="register_password" placeholder="رمز عبور ..."/>
+							<input type="password" class="form-control persian-label persian-textbox" id="registerPassword" name="password" placeholder="رمز عبور ..."/>
 						</div>
 					</div>
 

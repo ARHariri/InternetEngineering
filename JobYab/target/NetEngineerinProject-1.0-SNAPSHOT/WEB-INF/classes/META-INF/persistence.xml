@@ -2,7 +2,15 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="com.sbu.neteng_NetEngineerinProject_war_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>com.jobyab.entities.Employee</class>
+    <class>com.jobyab.entities.Employer</class>
+    <class>com.jobyab.entities.User</class>
+    <class>com.jobyab.entities.Languages</class>
+    <class>com.jobyab.entities.Msgbox</class>
+    <class>com.jobyab.entities.Jobseeker</class>
+    <class>com.jobyab.entities.Skills</class>
+    <class>com.jobyab.entities.Tags</class>
+    <class>com.jobyab.entities.UserType</class>
+    <class>com.jobyab.entities.Advertisement</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jobyab_db?zeroDateTimeBehavior=convertToNull"/>

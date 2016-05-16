@@ -10,7 +10,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>logInController</servlet-name>
-        <url-pattern>/logInController</url-pattern>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>registerController</servlet-name>

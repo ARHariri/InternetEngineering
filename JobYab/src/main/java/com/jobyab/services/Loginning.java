@@ -11,4 +11,8 @@ package com.jobyab.services;
  */
 public class Loginning {
     
+//    public boolean authenticate(String email, String password)
+//    {
+//        
+//    }
 }

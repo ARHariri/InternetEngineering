@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import com.jobyab.models.*;
-import com.jobyab.query.DataQuery;
+import com.jobyab.DAO.*;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
  */
 public class logInController extends HttpServlet {
 
-    private DataQuery query = new DataQuery();
+    //private DataQuery query = new DataQuery();
     public logInController()
     {
         super();
@@ -44,14 +44,14 @@ public class logInController extends HttpServlet {
         String email = request.getParameter("loginemail");
         String password = request.getParameter("loginpassword");
         
-        if (query.loginControl(email, password)) {
+        /*if (query.loginControl(email, password)) {
             user u = new user(email, password, userType.type.jobSeeker, "", "", "تقی", "تقوی", new Date());
             HttpSession session =request.getSession();
             session.setAttribute("user", u);
             response.sendRedirect("mainPage.jsp");
         } else {
             //incorrect password or useranme
-        }
+        }*/
         
         
     }

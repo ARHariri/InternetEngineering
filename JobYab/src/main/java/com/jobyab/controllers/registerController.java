@@ -5,10 +5,10 @@
  */
 package com.jobyab.controllers;
 
-import com.jobyab.entities.Employee;
-import com.jobyab.query.DataQuery;
+import com.jobyab.services.Registering;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class registerController extends HttpServlet {
 
-    private DataQuery query = new DataQuery();
+    private Registering rgstr = new Registering();
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -33,14 +33,24 @@ public class registerController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = request.getParameter("register_email");
-        String pwd = request.getParameter("register_password");
-        Employee e = new Employee(10, email, pwd);
+        
+        String email = request.getParameter("email");
+        String pwd = request.getParameter("password");
+        
+        if(rgstr.register(email, pwd)){
+            RequestDispatcher rd = request.getRequestDispatcher("/success.jsp");
+            rd.forward(request, response);
+        }
+        
+        RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+        rd.forward(request, response);
+        
+        /*Employee e = new Employee(10, email, pwd);
         if ( query.registerUser(e) ){
             // user register successfully
         }
         else{
             // user registeration proccess failed
-        }
+        }*/
     }
 }
