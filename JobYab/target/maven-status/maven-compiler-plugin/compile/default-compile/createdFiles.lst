@@ -4,10 +4,8 @@ com\jobyab\models\userModel.class
 com\jobyab\services\Loginning.class
 com\jobyab\entities\Msgbox_.class
 com\jobyab\entities\User_.class
-com\jobyab\entities\UserType.class
 com\jobyab\entities\Skills_.class
 com\jobyab\entities\Languages_.class
-com\jobyab\entities\UserType_.class
 com\jobyab\auxiliaries\userType.class
 com\jobyab\entities\Advertisement.class
 com\jobyab\entities\MsgboxPK_.class

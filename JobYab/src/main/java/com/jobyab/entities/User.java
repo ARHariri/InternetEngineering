@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author sajad
+ * @author Ali
  */
 @Entity
 @Table(name = "user")
@@ -79,6 +79,13 @@ public class User implements Serializable {
     }
 
     public User(String email, String password, short type) {
+        this.email = email;
+        this.password = password;
+        this.type = type;
+    }
+    
+    public User(Short userId, String email, String password, short type) {
+        this.userId = userId;
         this.email = email;
         this.password = password;
         this.type = type;

@@ -48,7 +48,7 @@
 	<div class="container-fluid" style="padding: 45px;">
 		<div class="row">
 			<div class="col-sm-6">
-				<form class="form-horizontal persian-form" action="registerController" onsubmit="return CheckValidation();" method="post">
+				<form class="form-horizontal persian-form" action="register" onsubmit="return CheckValidation();" method="post">
 					<div class="form-group form-group-lg">
 						<label class="col-lg-5 contol-label persian-label error-message" id="emailError" style="visibility: hidden;">خطا</label>
 						<div class="col-lg-7">
