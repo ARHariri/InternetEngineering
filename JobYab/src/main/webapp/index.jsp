@@ -45,7 +45,7 @@
 		</nav>
 	</header>
 
-	<div class="container-fluid" style="padding: 60px;">
+	<div class="container-fluid" style="padding: 45px;">
 		<div class="row">
 			<div class="col-sm-6">
 				<form class="form-horizontal persian-form" action="registerController" onsubmit="return CheckValidation();" method="post">

@@ -59,6 +59,16 @@
                         </div>
                     </div>
                 </div>
+                
+                <div class="col-sm-12">
+                    <form action="index.jsp" method="get">
+                        <div class="form-group form-group-lg">
+                            <div class="col-lg-12">
+                                <input type="submit" class="form-control btn btn-success persian-label persian-btn" value="ثبت نام" id="submitRegisterBtn" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
         </div>
     </body>
 </html>

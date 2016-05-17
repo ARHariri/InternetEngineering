@@ -14,12 +14,14 @@ import java.io.PrintWriter;
  */
 public class Registering {
     
-    private CoreDAO<User> userDAO = new CoreDAO<User>();
+    private CoreDAO<User> userDAO = new CoreDAO<User>(User.class);
+    private CoreDAO<UserType> userTypeDAO = new CoreDAO<UserType>(UserType.class);
     
-    public boolean register(String email, String password){
+    public boolean register(String email, String password, String userType){
         try{
-            short id = 1;
-            User uObj = new User(id , email, password);
+            User uObj = new User(email, password);
+            UserType userTypeObj = new UserType(userType);
+            uObj.setType(userTypeObj);
             
             return userDAO.add(uObj);
         }

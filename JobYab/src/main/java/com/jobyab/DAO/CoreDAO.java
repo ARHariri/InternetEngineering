@@ -19,11 +19,15 @@ public class CoreDAO<T> {
     EntityManagerFactory emf;
     EntityManager em;
     EntityTransaction etx;
-    //private T t;
-    public CoreDAO() {
+    
+    protected Class<T> entityClass;
+    
+    public CoreDAO(Class<T> entityClass) {
         emf = Persistence.createEntityManagerFactory("com.sbu.neteng_NetEngineerinProject_war_1.0-SNAPSHOTPU");
         em = emf.createEntityManager();
         etx = em.getTransaction();
+        
+        this.entityClass = entityClass;
     }
     
     public boolean add(T t){
@@ -34,8 +38,12 @@ public class CoreDAO<T> {
             return true;
         } catch (Exception e) {
             etx.rollback();
-            System.out.println("ERRRRRRRRRRRRRRRRRRRRRRRRORRRRRRRRRRRRR"+e.getMessage());
+            //System.out.println("ERRRRRRRRRRRRRRRRRRRRRRRRORRRRRRRRRRRRR"+e.getMessage());
             return false;
         }
+    }
+    
+    public T read(short id){
+        return em.find(entityClass, id);
     }
 }

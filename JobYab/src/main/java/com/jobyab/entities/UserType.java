@@ -55,6 +55,10 @@ public class UserType implements Serializable {
     public UserType(Short userTypeId) {
         this.userTypeId = userTypeId;
     }
+    
+    public UserType(String userTypeName){
+        this.userTypeName = userTypeName;
+    }
 
     public UserType(Short userTypeId, String userTypeName) {
         this.userTypeId = userTypeId;
