@@ -5,6 +5,7 @@
  */
 package com.jobyab.models;
 
+import com.jobyab.auxiliaries.userType;
 import java.util.Date;
 
 /**

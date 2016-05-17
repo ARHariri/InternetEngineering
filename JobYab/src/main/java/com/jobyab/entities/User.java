@@ -14,9 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -29,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Ali
+ * @author sajad
  */
 @Entity
 @Table(name = "user")
@@ -38,7 +36,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
     @NamedQuery(name = "User.findByUserId", query = "SELECT u FROM User u WHERE u.userId = :userId"),
     @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email"),
-    @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")})
+    @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password"),
+    @NamedQuery(name = "User.findByType", query = "SELECT u FROM User u WHERE u.type = :type")})
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -49,7 +48,7 @@ public class User implements Serializable {
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 20)
+    @Size(min = 1, max = 50)
     @Column(name = "email")
     private String email;
     @Basic(optional = false)
@@ -57,6 +56,10 @@ public class User implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "password")
     private String password;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "type")
+    private short type;
     @ManyToMany(mappedBy = "userCollection")
     private Collection<Skills> skillsCollection;
     @ManyToMany(mappedBy = "userCollection")
@@ -65,9 +68,6 @@ public class User implements Serializable {
     private Jobseeker jobseeker;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     private Employer employer;
-    @JoinColumn(name = "type", referencedColumnName = "user_type_id")
-    @ManyToOne(optional = false)
-    private UserType type;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Collection<Msgbox> msgboxCollection;
 
@@ -77,16 +77,12 @@ public class User implements Serializable {
     public User(Short userId) {
         this.userId = userId;
     }
-    
-    public User(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
-    
-    public User(Short userId, String email, String password) {
+
+    public User(Short userId, String email, String password, short type) {
         this.userId = userId;
         this.email = email;
         this.password = password;
+        this.type = type;
     }
 
     public Short getUserId() {
@@ -111,6 +107,14 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public short getType() {
+        return type;
+    }
+
+    public void setType(short type) {
+        this.type = type;
     }
 
     @XmlTransient
@@ -145,14 +149,6 @@ public class User implements Serializable {
 
     public void setEmployer(Employer employer) {
         this.employer = employer;
-    }
-
-    public UserType getType() {
-        return type;
-    }
-
-    public void setType(UserType type) {
-        this.type = type;
     }
 
     @XmlTransient

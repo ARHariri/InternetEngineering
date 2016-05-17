@@ -30,16 +30,16 @@ public class CoreDAO<T> {
         this.entityClass = entityClass;
     }
     
-    public boolean add(T t){
+    public T add(T t){
         try {
             etx.begin();
             em.persist(t);
             etx.commit();
-            return true;
+            
+            return t;
         } catch (Exception e) {
             etx.rollback();
-            //System.out.println("ERRRRRRRRRRRRRRRRRRRRRRRRORRRRRRRRRRRRR"+e.getMessage());
-            return false;
+            return null;
         }
     }
     

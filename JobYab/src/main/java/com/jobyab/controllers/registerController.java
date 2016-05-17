@@ -41,7 +41,6 @@ public class registerController extends HttpServlet {
         String kind = request.getParameter("userKind");
         
         if(kind.compareToIgnoreCase("jobSeeker") == 0 || kind.compareToIgnoreCase("employer") == 0){
-            
             if(rgstr.register(email, pwd, kind)){
 //              RequestDispatcher rd = request.getRequestDispatcher("/success.jsp");
 //              rd.forward(request, response);
