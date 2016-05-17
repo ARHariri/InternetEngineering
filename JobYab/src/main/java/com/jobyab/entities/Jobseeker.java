@@ -6,6 +6,7 @@
 package com.jobyab.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,13 +16,15 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author sajad
+ * @author Ali
  */
 @Entity
 @Table(name = "jobseeker")
@@ -33,6 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Jobseeker.findByLastName", query = "SELECT j FROM Jobseeker j WHERE j.lastName = :lastName"),
     @NamedQuery(name = "Jobseeker.findByCity", query = "SELECT j FROM Jobseeker j WHERE j.city = :city"),
     @NamedQuery(name = "Jobseeker.findByTel", query = "SELECT j FROM Jobseeker j WHERE j.tel = :tel"),
+    @NamedQuery(name = "Jobseeker.findByBirthDay", query = "SELECT j FROM Jobseeker j WHERE j.birthDay = :birthDay"),
     @NamedQuery(name = "Jobseeker.findByUserImage", query = "SELECT j FROM Jobseeker j WHERE j.userImage = :userImage")})
 public class Jobseeker implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -63,6 +67,11 @@ public class Jobseeker implements Serializable {
     private String tel;
     @Basic(optional = false)
     @NotNull
+    @Column(name = "birth_Day")
+    @Temporal(TemporalType.DATE)
+    private Date birthDay;
+    @Basic(optional = false)
+    @NotNull
     @Size(min = 1, max = 200)
     @Column(name = "user_image")
     private String userImage;
@@ -77,12 +86,13 @@ public class Jobseeker implements Serializable {
         this.jobSeekerid = jobSeekerid;
     }
 
-    public Jobseeker(Short jobSeekerid, String firstName, String lastName, String city, String tel, String userImage) {
+    public Jobseeker(Short jobSeekerid, String firstName, String lastName, String city, String tel, Date birthDay, String userImage) {
         this.jobSeekerid = jobSeekerid;
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
         this.tel = tel;
+        this.birthDay = birthDay;
         this.userImage = userImage;
     }
 
@@ -124,6 +134,14 @@ public class Jobseeker implements Serializable {
 
     public void setTel(String tel) {
         this.tel = tel;
+    }
+
+    public Date getBirthDay() {
+        return birthDay;
+    }
+
+    public void setBirthDay(Date birthDay) {
+        this.birthDay = birthDay;
     }
 
     public String getUserImage() {

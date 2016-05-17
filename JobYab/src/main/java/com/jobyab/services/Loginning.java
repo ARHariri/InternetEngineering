@@ -5,14 +5,16 @@
  */
 package com.jobyab.services;
 
+
+import com.jobyab.models.userModel;
 /**
  *
  * @author Ali
  */
 public class Loginning {
     
-//    public boolean authenticate(String email, String password)
-//    {
+//    public userModel authenticate(String email, String password){
 //        
 //    }
+    
 }

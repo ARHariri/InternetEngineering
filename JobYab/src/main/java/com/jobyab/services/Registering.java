@@ -6,9 +6,14 @@
 package com.jobyab.services;
 
 import com.jobyab.DAO.*;
+import com.jobyab.models.*;
 import com.jobyab.entities.*;
 import java.io.PrintWriter;
 import com.jobyab.auxiliaries.*;
+import java.security.MessageDigest;
+import java.util.HashSet;
+import java.util.Set;
+import org.apache.taglibs.standard.lang.jstl.Coercions;
 /**
  *
  * @author Ali
@@ -17,35 +22,63 @@ public class Registering {
     
     private CoreDAO<User> userDAO = new CoreDAO<User>(User.class);
     
-    public boolean register(String email, String password, String userKind){
+    public User registerUser(String email, String password, short userKind){
         try{
-            userKind = userKind.toLowerCase();
+            //Hash password by md5 algorithm
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(password.getBytes());
+            byte[] bytes = md.digest();
             
-            User uObj = null;
+            //User uDAO = new User(email, password, userKind);
+            User uDAO = new User(email, new String(bytes), userKind);
             
-            switch(userKind){
-                case "jobseeker":{
-                    uObj = new User(email, password, (short) 1);
-                }
-                break;
-                    
-                case "employer":{
-                    uObj = new User(email, password, (short) 2);
-                }
-                break;
-                    
-                default:
-                    return false;
-                    
-            }
-            
-            return userDAO.add(uObj);
+            return userDAO.add(uDAO);
         }
         catch(Exception e){
             System.out.println(e.getMessage());
-            return false;
+            return null;
         }
     }
     
+    public boolean registerJobSeeker(userModel uModel){
+        User user = registerUser(uModel.getEmail(), uModel.getPasswrod(), (short)1);
+        
+        if(user == null)
+            return false;
+        
+        CoreDAO<Jobseeker> jobSeekerDAO = new CoreDAO<Jobseeker>(Jobseeker.class);
+        
+        Jobseeker jDAO = new Jobseeker();
+        jDAO.setFirstName(uModel.getFirstName());
+        jDAO.setLastName(uModel.getLastName());
+        jDAO.setBirthDay(uModel.getBirthDate());
+        
+        jDAO = jobSeekerDAO.add(jDAO);
+        
+        if(jDAO == null)
+            return false;
+        
+        return true;
+    }
+    
+    public boolean registerEmployer(userModel uModel){
+        User user = registerUser(uModel.getEmail(), uModel.getPasswrod(), (short)2);
+        
+        if(user == null)
+            return false;
+        
+        CoreDAO<Employer> employerDAO = new CoreDAO<Employer>(Employer.class);
+        
+        Employer eDAO = new Employer();
+        eDAO.setCoName(uModel.getCompanyName());
+        eDAO.setCoTel(uModel.getCompanyTell());
+        
+        eDAO = employerDAO.add(eDAO);
+        
+        if(eDAO == null)
+            return false;
+        
+        return true;
+    }
     
 }

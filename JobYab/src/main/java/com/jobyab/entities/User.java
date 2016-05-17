@@ -78,8 +78,7 @@ public class User implements Serializable {
         this.userId = userId;
     }
 
-    public User(Short userId, String email, String password, short type) {
-        this.userId = userId;
+    public User(String email, String password, short type) {
         this.email = email;
         this.password = password;
         this.type = type;

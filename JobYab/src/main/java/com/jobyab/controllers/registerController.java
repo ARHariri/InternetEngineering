@@ -5,9 +5,15 @@
  */
 package com.jobyab.controllers;
 
+import com.jobyab.entities.User;
+import com.jobyab.models.userModel;
 import com.jobyab.services.Registering;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -36,28 +42,64 @@ public class registerController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String email = request.getParameter("email");
-        String pwd = request.getParameter("password");
+        
+        userModel uM = new userModel();
+        
+        uM.setEmail(request.getParameter("email"));
+        uM.setPasswrod(request.getParameter("password"));
         String kind = request.getParameter("userKind");
         
-        if(kind.compareToIgnoreCase("jobSeeker") == 0 || kind.compareToIgnoreCase("employer") == 0){
-            if(rgstr.register(email, pwd, kind)){
-//              RequestDispatcher rd = request.getRequestDispatcher("/success.jsp");
-//              rd.forward(request, response);
-                response.sendRedirect("success.jsp");
-            }
+        kind = kind.toLowerCase();
             
-            response.sendRedirect("failregister.jsp");
+        switch(kind){
+            case "jobseeker":{
+                uM.setFirstName(request.getParameter("firstName"));
+                uM.setLastName(request.getParameter("lastName"));
+                uM.setKind("jobseeker");
+                
+                String date = request.getParameter("birthYear") + "/"
+                            + request.getParameter("birthMonth") + "/"
+                            + request.getParameter("birthDay");
+                
+                try {
+                    
+                    SimpleDateFormat formater = new SimpleDateFormat("yyyy/mm/dd");
+                    Date birthDate = formater.parse(date);
+                    
+                    uM.setBirthDate(birthDate);
+                    
+                    if(rgstr.registerJobSeeker(uM))
+                        response.sendRedirect("success.jsp");
+                    response.sendRedirect("failregister.jsp");
+                    
+                } catch (Exception e) {
+                    
+                    response.sendRedirect("failregister.jsp");
+                }
+            }
+            break;
+                    
+            case "employer":{
+                uM.setCompanyName(request.getParameter("companyName"));
+                uM.setCompanyTell(request.getParameter("companyTel"));
+                uM.setKind("employer");
+                
+                try {
+                    
+                    if(rgstr.registerEmployer(uM))
+                        response.sendRedirect("success.jsp");
+                    
+                    response.sendRedirect("failregister.jsp");
+                    
+                } catch (Exception e) {
+                    
+                    response.sendRedirect("failregister.jsp");
+                }
+            }
+            break;
+                    
+            default: response.sendRedirect("index.jsp");
         }
         
-        response.sendRedirect("index.jsp");
-        
-        /*Employee e = new Employee(10, email, pwd);
-        if ( query.registerUser(e) ){
-            // user register successfully
-        }
-        else{
-            // user registeration proccess failed
-        }*/
     }
 }
