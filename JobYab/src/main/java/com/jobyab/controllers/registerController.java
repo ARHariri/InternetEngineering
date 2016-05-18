@@ -11,6 +11,8 @@ import com.jobyab.models.userModel;
 import com.jobyab.services.Registering;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
@@ -42,7 +44,7 @@ public class registerController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        request.setCharacterEncoding("UTF-8");
         userModel uM = new userModel();
         
         uM.setEmail(request.getParameter("email"));
@@ -53,8 +55,10 @@ public class registerController extends HttpServlet {
             
         switch( kind ){
             case "jobseeker":{
-                uM.setFirstName(request.getParameter("firstName"));
-                uM.setLastName(request.getParameter("lastName"));
+                String lName = request.getParameter("firstName");
+                String fName = request.getParameter("lastName");
+                uM.setFirstName(fName);
+                uM.setLastName(lName);
                 uM.setKind("jobSeeker");
       
                     if( rgstr.registerJobSeeker( uM ) )
@@ -71,14 +75,12 @@ public class registerController extends HttpServlet {
                 uM.setKind("employer");
                 
                 try {
-                    
                     if(rgstr.registerEmployer(uM))
                         response.sendRedirect("success.jsp");
                     
                     response.sendRedirect("failregister.jsp");
                     
                 } catch (Exception e) {
-                    
                     response.sendRedirect("failregister.jsp");
                 }
             }

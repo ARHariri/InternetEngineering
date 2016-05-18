@@ -5,11 +5,12 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="com.jobyab.models.userModel" %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8"/>
-	<title>Site Name</title>
+        <title>پروفایل</title>
 	<link rel="stylesheet" type="text/css" href="references/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="references/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="references/css/bootstrap-theme.css">
@@ -159,7 +160,9 @@
 							<li><a href="#resume">رزومه</a></li>
 						</ul>
 					</div><div class="col-md-9">
-						<h3 id="infos" class="page-header text-info">اطلاعات کاربر</h3>
+						
+                                            <form action="userUpdateController" method="post">
+                                                <h3 id="infos" class="page-header text-info">اطلاعات کاربر</h3>
 						<label for="username" style="font-size: 16px">نام کاربری</label>
 						<input type="text" class="form-control persian-textbox" placeholder="AliAlavi" id="username" style="direction:ltr"/>
 						<label for="pwd" style="font-size: 16px">رمز عبور</label>
@@ -182,7 +185,8 @@
 						<h3 id="sbmt" class="page-header text-info">ثبت اطلاعات</h3>
 						<p style="font-size: 16px; background: #FFFFB2;"><strong>توجه: </strong> در صورتی که اطلاعات خود را ویرایش داده اید، ثبت اطلاعات را کلیک کنید</p>
 						<input type="button" value="ثـبّت اطلاعات" id="addButton" style="width:100%; margin-top: 15px;" />
-					</div>
+                                            </form>                                                
+                                        </div>
 				</div>
 			</div>
 		</div>

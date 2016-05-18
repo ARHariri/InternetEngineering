@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@page import="com.jobyab.models.userModel" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +47,10 @@
 							</li>
 							<li>
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="UserName">
-                                                                    
+                                                                    <%
+                                                                        userModel user = (userModel) request.getSession().getAttribute("user");
+                                                                        out.print(user.getLastName() + " " + user.getFirstName()); 
+                                                                    %>  
                                                                 </a>
 								<ul class="dropdown-menu">
 			                        <li align="center">
@@ -55,7 +58,7 @@
 									</li>
 									<li class="divider"></li>
 									<li align="center">
-										<a href="">پروفایل</a>
+										<a href="userProfile.jsp">پروفایل</a>
 									</li>
 									<li class="divider"></li>
 									<li align="center">

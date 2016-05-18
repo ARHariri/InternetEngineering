@@ -44,12 +44,13 @@ public class logInController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Loginning lgn = new Loginning();
-        String email = request.getParameter("loginemail");
-        String password = request.getParameter("loginpassword");
-        
+        String email = java.net.URLDecoder.decode(request.getParameter("loginemail"), "UTF-8");
+        String password = java.net.URLDecoder.decode(request.getParameter("loginpassword"), "UTF-8");
         userModel uM = lgn.authenticate(email, password);
   
         if (!uM.equals(null)){
+            HttpSession session =request.getSession();
+            session.setAttribute("user", uM);
             response.sendRedirect("mainPage.jsp");
         }
         
