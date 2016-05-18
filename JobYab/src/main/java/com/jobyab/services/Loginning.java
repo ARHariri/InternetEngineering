@@ -7,6 +7,7 @@ package com.jobyab.services;
 
 
 import com.jobyab.DAO.CoreDAO;
+import com.jobyab.DAO.UserDAO;
 import com.jobyab.entities.User;
 import com.jobyab.models.userModel;
 import java.security.MessageDigest;
@@ -15,7 +16,7 @@ import java.security.MessageDigest;
  * @author Ali
  */
 public class Loginning {
-    private CoreDAO<User> userDAO = new CoreDAO<User>(User.class);
+    private UserDAO userDAO = new UserDAO();
     public User authenticate(String email, String password){
         try{
             //Hash password by md5 algorithm
@@ -24,7 +25,9 @@ public class Loginning {
             byte[] bytes = md.digest();
             
             //User uDAO = new User(email, password, userKind);
-            return userDAO.authenticate(email,password);
+            if ( !userDAO.fetch(email,password).equals(null) ){
+                
+            }
         }
         catch(Exception e){
             System.out.println(e.getMessage());

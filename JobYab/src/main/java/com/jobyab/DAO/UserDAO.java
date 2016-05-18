@@ -5,6 +5,7 @@
  */
 package com.jobyab.DAO;
 
+import com.jobyab.entities.User;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -12,38 +13,28 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author Ali
+ * @author sajad
  */
-public class CoreDAO<T> {
-    
+public class UserDAO {
     EntityManagerFactory emf;
     EntityManager em;
     EntityTransaction etx;
-    
-    protected Class<T> entityClass;
-    
-    public CoreDAO(Class<T> entityClass) {
+ 
+    public UserDAO(){
         emf = Persistence.createEntityManagerFactory("com.sbu.neteng_NetEngineerinProject_war_1.0-SNAPSHOTPU");
         em = emf.createEntityManager();
         etx = em.getTransaction();
-        
-        this.entityClass = entityClass;
     }
     
-    public T add(T t){
+    public User fetch(String email, String password){
         try {
-            etx.begin();
-            em.persist(t);
-            etx.commit();  
-            return t;
+            return (User) em.createNamedQuery("User.fetch")
+            .setParameter("email", email)
+            .setParameter("password",password)
+            .getSingleResult();
         } catch (Exception e) {
-            etx.rollback();
             return null;
-        }
-    }
-    
-    public T read(short id){
-        return em.find(entityClass, id);
+        }            
     }
     
 }
