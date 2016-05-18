@@ -32,6 +32,7 @@ public class UserDAO {
             .setParameter("email", email)
             .setParameter("password",password)
             .getSingleResult();
+         //   return (User) em.createQuery("SELECT u FROM User u WHERE u.email =" + email + " AND u.password=" + password);
         } catch (Exception e) {
             return null;
         }            

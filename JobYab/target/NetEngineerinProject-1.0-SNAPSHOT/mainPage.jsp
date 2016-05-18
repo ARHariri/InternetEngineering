@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="com.jobyab.models.user"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,10 +47,7 @@
 							</li>
 							<li>
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="UserName">
-                                                                    <% 
-                                                                        user u =  (user) session.getAttribute("user");
-                                                                        out.print( u.getFirstName()+ "  " + u.getLastName());
-                                                                    %>
+                                                                    
                                                                 </a>
 								<ul class="dropdown-menu">
 			                        <li align="center">

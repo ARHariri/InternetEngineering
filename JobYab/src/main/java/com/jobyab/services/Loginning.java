@@ -26,7 +26,7 @@ public class Loginning {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(password.getBytes());
             byte[] bytes = md.digest();
-            User uObj = userDAO.fetch(email,new String(password));
+            User uObj = userDAO.fetch(email,new String(bytes));
             
             if ( uObj.equals(null) )
                 return null;

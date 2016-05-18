@@ -50,7 +50,7 @@ public class logInController extends HttpServlet {
         userModel uM = lgn.authenticate(email, password);
   
         if (!uM.equals(null)){
-            
+            response.sendRedirect("mainPage.jsp");
         }
         
         /*if (query.loginControl(email, password)) {
