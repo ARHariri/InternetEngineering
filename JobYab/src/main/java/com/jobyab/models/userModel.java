@@ -12,17 +12,53 @@ import java.util.Date;
  * @author Ali
  */
 public class userModel {
-    public String email;
-    public String passwrod;
+    private String email;
+    private String passwrod;
     
-    public String companyName;
-    public String companyTell;
+    private String companyName;
+    private String companyTell;
+    private String companyAddress;
     
-    public String firstName;
-    public String lastName;
-    public Date birthDate;
+    private String firstName;
+    private String lastName;
+    private Date birthDate;
+    private String userTel;
+    private String city;
+    private String imageDir;
+
+    private String kind;
     
-    public String kind;
+    public String getCompanyAddress() {
+        return companyAddress;
+    }
+
+    public void setCompanyAddress(String companyAddress) {
+        this.companyAddress = companyAddress;
+    }
+
+    public String getUserTel() {
+        return userTel;
+    }
+
+    public void setUserTel(String userTel) {
+        this.userTel = userTel;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getImageDir() {
+        return imageDir;
+    }
+
+    public void setImageDir(String imageDir) {
+        this.imageDir = imageDir;
+    }
     
     public userModel()
     {

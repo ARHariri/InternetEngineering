@@ -57,7 +57,7 @@ public class registerController extends HttpServlet {
             case "jobseeker":{
                 uM.setFirstName(request.getParameter("firstName"));
                 uM.setLastName(request.getParameter("lastName"));
-                uM.setKind("jobseeker");
+                uM.setKind("jobSeeker");
                 
                 String date = request.getParameter("birthYear") + "-"
                             + request.getParameter("birthMonth") + "-"

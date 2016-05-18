@@ -47,9 +47,9 @@ public class logInController extends HttpServlet {
         String email = request.getParameter("loginemail");
         String password = request.getParameter("loginpassword");
         
-        userModel uM = new userModel();
-        User u = lgn.authenticate(email, password);
-        if (!u.equals(null)){
+        userModel uM = lgn.authenticate(email, password);
+  
+        if (!uM.equals(null)){
             
         }
         
