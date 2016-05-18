@@ -19,14 +19,17 @@ import org.apache.taglibs.standard.lang.jstl.Coercions;
  * @author Ali
  */
 public class Registering {
+   
     
-    private CoreDAO<User> userDAO = new CoreDAO<User>(User.class);
-    
+    public Registering(){
+        
+    }
     public User registerUser(String email, String password, short userKind){
+        CoreDAO<User> userDAO = new CoreDAO<User>( User.class );
         try{
             //Hash password by md5 algorithm
             MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(password.getBytes());
+            md.update( password.getBytes() );
             byte[] bytes = md.digest();
             
             //User uDAO = new User(email, password, userKind);
@@ -41,7 +44,7 @@ public class Registering {
     }
     
     public boolean registerJobSeeker(userModel uModel){
-        User user = registerUser(uModel.getEmail(), uModel.getPasswrod(), (short)1);
+        User user = registerUser( uModel.getEmail(), uModel.getPasswrod(), (short)1 );
         
         if(user == null)
             return false;

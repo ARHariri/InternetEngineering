@@ -20,6 +20,7 @@ com\jobyab\entities\Skills.class
 com\jobyab\entities\Employer_.class
 com\jobyab\entities\Jobseeker_.class
 com\jobyab\DAO\CoreDAO.class
+com\jobyab\DAO\UserDAO.class
 com\jobyab\models\advertisement.class
 com\jobyab\entities\Languages.class
 com\jobyab\entities\Employer.class

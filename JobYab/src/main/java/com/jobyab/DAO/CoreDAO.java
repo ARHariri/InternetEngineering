@@ -14,13 +14,14 @@ import javax.persistence.Persistence;
  *
  * @author Ali
  */
+
 public class CoreDAO<T> {
     
     EntityManagerFactory emf;
     EntityManager em;
     EntityTransaction etx;
     
-    protected Class<T> entityClass;
+    public Class<T> entityClass;
     
     public CoreDAO(Class<T> entityClass) {
         emf = Persistence.createEntityManagerFactory("com.sbu.neteng_NetEngineerinProject_war_1.0-SNAPSHOTPU");

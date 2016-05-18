@@ -6,6 +6,7 @@
 package com.jobyab.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,13 +14,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -29,7 +33,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "user")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "User.fetch", query = "SELECT u,p FROM User u WHERE u.email = :email AND u.password = :password"),
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
     @NamedQuery(name = "User.findByUserId", query = "SELECT u FROM User u WHERE u.userId = :userId"),
     @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email"),
@@ -57,8 +60,16 @@ public class User implements Serializable {
     @NotNull
     @Column(name = "type")
     private short type;
+    @ManyToMany(mappedBy = "userCollection")
+    private Collection<Skills> skillsCollection;
+    @ManyToMany(mappedBy = "userCollection")
+    private Collection<Languages> languagesCollection;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     private Jobseeker jobseeker;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private Employer employer;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private Collection<Msgbox> msgboxCollection;
 
     public User() {
     }
@@ -105,12 +116,47 @@ public class User implements Serializable {
         this.type = type;
     }
 
+    @XmlTransient
+    public Collection<Skills> getSkillsCollection() {
+        return skillsCollection;
+    }
+
+    public void setSkillsCollection(Collection<Skills> skillsCollection) {
+        this.skillsCollection = skillsCollection;
+    }
+
+    @XmlTransient
+    public Collection<Languages> getLanguagesCollection() {
+        return languagesCollection;
+    }
+
+    public void setLanguagesCollection(Collection<Languages> languagesCollection) {
+        this.languagesCollection = languagesCollection;
+    }
+
     public Jobseeker getJobseeker() {
         return jobseeker;
     }
 
     public void setJobseeker(Jobseeker jobseeker) {
         this.jobseeker = jobseeker;
+    }
+
+    public Employer getEmployer() {
+        return employer;
+    }
+
+    public void setEmployer(Employer employer) {
+        this.employer = employer;
+    }
+
+    @XmlTransient
+    public Collection<Msgbox> getMsgboxCollection() {
+        return msgboxCollection;
+    }
+
+    public void setMsgboxCollection(Collection<Msgbox> msgboxCollection) {
+        this.msgboxCollection = msgboxCollection;
     }
 
     @Override

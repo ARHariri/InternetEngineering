@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class registerController extends HttpServlet {
 
-    
+    Registering rgstr = new Registering();
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -43,8 +43,6 @@ public class registerController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        Registering rgstr = new Registering();
-        
         userModel uM = new userModel();
         
         uM.setEmail(request.getParameter("email"));
@@ -53,35 +51,17 @@ public class registerController extends HttpServlet {
         
         kind = kind.toLowerCase();
             
-        switch(kind){
+        switch( kind ){
             case "jobseeker":{
                 uM.setFirstName(request.getParameter("firstName"));
                 uM.setLastName(request.getParameter("lastName"));
                 uM.setKind("jobSeeker");
-                
-                String date = request.getParameter("birthYear") + "-"
-                            + request.getParameter("birthMonth") + "-"
-                            + request.getParameter("birthDay");
-                
-                try {
-                    
-                    SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
-                    Date birthDate = formater.parse(date);
-
-                 //  java.util.Date date = new Date();
-                    
-//                    PersianCalendar birthDate = new PersianCalendar();
-                    
-                    uM.setBirthDate(birthDate);
-                    if(rgstr.registerJobSeeker(uM))
+      
+                    if( rgstr.registerJobSeeker( uM ) )
                         response.sendRedirect("success.jsp");
                     else
                     response.sendRedirect("failregister.jsp");
                     
-                } catch (Exception e) {
-                    
-                    response.sendRedirect("failregister.jsp");
-                }
             }
             break;
                     
