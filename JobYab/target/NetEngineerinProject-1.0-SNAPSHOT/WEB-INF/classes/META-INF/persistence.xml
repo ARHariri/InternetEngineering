@@ -7,9 +7,10 @@
     <class>com.jobyab.entities.Skills</class>
     <class>com.jobyab.entities.Employer</class>
     <class>com.jobyab.entities.Languages</class>
-    <class>com.jobyab.entities.Jobseeker</class>
     <class>com.jobyab.entities.User</class>
     <class>com.jobyab.entities.Tags</class>
+    <class>com.jobyab.entities.User_1</class>
+    <class>com.jobyab.entities.Jobseeker</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jobyab_db?zeroDateTimeBehavior=convertToNull"/>

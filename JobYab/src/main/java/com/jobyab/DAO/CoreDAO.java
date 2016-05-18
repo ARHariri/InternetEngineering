@@ -34,8 +34,7 @@ public class CoreDAO<T> {
         try {
             etx.begin();
             em.persist(t);
-            etx.commit();
-            
+            etx.commit();  
             return t;
         } catch (Exception e) {
             etx.rollback();
@@ -45,5 +44,16 @@ public class CoreDAO<T> {
     
     public T read(short id){
         return em.find(entityClass, id);
+    }
+    
+    public T authenticate(String email, String password){
+        try {
+            return (T) em.createNamedQuery("User.authenticate")
+            .setParameter("email", email)
+            .setParameter("password",password)
+            .getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

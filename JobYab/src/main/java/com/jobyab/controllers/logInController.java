@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import com.jobyab.models.*;
 import com.jobyab.DAO.*;
+import com.jobyab.entities.User;
+import com.jobyab.services.Loginning;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -41,8 +43,15 @@ public class logInController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Loginning lgn = new Loginning();
         String email = request.getParameter("loginemail");
         String password = request.getParameter("loginpassword");
+        
+        userModel uM = new userModel();
+        User u = lgn.authenticate(email, password);
+        if (!u.equals(null)){
+            
+        }
         
         /*if (query.loginControl(email, password)) {
             user u = new user(email, password, userType.type.jobSeeker, "", "", "تقی", "تقوی", new Date());

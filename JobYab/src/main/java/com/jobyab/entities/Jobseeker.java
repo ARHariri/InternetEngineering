@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Ali
+ * @author sajad
  */
 @Entity
 @Table(name = "jobseeker")
@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Jobseeker.findByLastName", query = "SELECT j FROM Jobseeker j WHERE j.lastName = :lastName"),
     @NamedQuery(name = "Jobseeker.findByCity", query = "SELECT j FROM Jobseeker j WHERE j.city = :city"),
     @NamedQuery(name = "Jobseeker.findByTel", query = "SELECT j FROM Jobseeker j WHERE j.tel = :tel"),
-    @NamedQuery(name = "Jobseeker.findByBirthDay", query = "SELECT j FROM Jobseeker j WHERE j.birthDay = :birthDay"),
+    @NamedQuery(name = "Jobseeker.findByBirthDate", query = "SELECT j FROM Jobseeker j WHERE j.birthDate = :birthDate"),
     @NamedQuery(name = "Jobseeker.findByUserImage", query = "SELECT j FROM Jobseeker j WHERE j.userImage = :userImage")})
 public class Jobseeker implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -55,24 +55,16 @@ public class Jobseeker implements Serializable {
     @Size(min = 1, max = 30)
     @Column(name = "last_name")
     private String lastName;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
+    @Size(max = 20)
     @Column(name = "city")
     private String city;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 16)
+    @Size(max = 16)
     @Column(name = "tel")
     private String tel;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "birth_Day")
-    @Temporal(TemporalType.DATE)
-    private Date birthDay;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 200)
+    @Column(name = "birthDate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date birthDate;
+    @Size(max = 200)
     @Column(name = "user_image")
     private String userImage;
     @JoinColumn(name = "jobSeeker_id", referencedColumnName = "user_id", insertable = false, updatable = false)
@@ -86,14 +78,10 @@ public class Jobseeker implements Serializable {
         this.jobSeekerid = jobSeekerid;
     }
 
-    public Jobseeker(Short jobSeekerid, String firstName, String lastName, String city, String tel, Date birthDay, String userImage) {
+    public Jobseeker(Short jobSeekerid, String firstName, String lastName) {
         this.jobSeekerid = jobSeekerid;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.city = city;
-        this.tel = tel;
-        this.birthDay = birthDay;
-        this.userImage = userImage;
     }
 
     public Short getJobSeekerid() {
@@ -136,12 +124,12 @@ public class Jobseeker implements Serializable {
         this.tel = tel;
     }
 
-    public Date getBirthDay() {
-        return birthDay;
+    public Date getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirthDay(Date birthDay) {
-        this.birthDay = birthDay;
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
     public String getUserImage() {

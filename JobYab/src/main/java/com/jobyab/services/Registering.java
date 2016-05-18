@@ -47,12 +47,11 @@ public class Registering {
             return false;
         
         CoreDAO<Jobseeker> jobSeekerDAO = new CoreDAO<Jobseeker>(Jobseeker.class);
-        
         Jobseeker jDAO = new Jobseeker();
+        jDAO.setJobSeekerid(user.getUserId());
         jDAO.setFirstName(uModel.getFirstName());
         jDAO.setLastName(uModel.getLastName());
-        jDAO.setBirthDay(uModel.getBirthDate());
-        
+        jDAO.setBirthDate(uModel.getBirthDate());
         jDAO = jobSeekerDAO.add(jDAO);
         
         if(jDAO == null)

@@ -5,6 +5,7 @@
  */
 package com.jobyab.controllers;
 
+import com.ghasemkiani.util.icu.PersianCalendar;
 import com.jobyab.entities.User;
 import com.jobyab.models.userModel;
 import com.jobyab.services.Registering;
@@ -58,19 +59,23 @@ public class registerController extends HttpServlet {
                 uM.setLastName(request.getParameter("lastName"));
                 uM.setKind("jobseeker");
                 
-                String date = request.getParameter("birthYear") + "/"
-                            + request.getParameter("birthMonth") + "/"
+                String date = request.getParameter("birthYear") + "-"
+                            + request.getParameter("birthMonth") + "-"
                             + request.getParameter("birthDay");
                 
                 try {
                     
-                    SimpleDateFormat formater = new SimpleDateFormat("yyyy/mm/dd");
+                    SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
                     Date birthDate = formater.parse(date);
+
+                 //  java.util.Date date = new Date();
+                    
+//                    PersianCalendar birthDate = new PersianCalendar();
                     
                     uM.setBirthDate(birthDate);
-                    
                     if(rgstr.registerJobSeeker(uM))
                         response.sendRedirect("success.jsp");
+                    else
                     response.sendRedirect("failregister.jsp");
                     
                 } catch (Exception e) {
