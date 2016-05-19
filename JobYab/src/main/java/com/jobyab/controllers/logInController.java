@@ -6,17 +6,11 @@
 package com.jobyab.controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
 import com.jobyab.models.*;
-import com.jobyab.DAO.*;
-import com.jobyab.entities.User;
 import com.jobyab.services.Loginning;
 import javax.servlet.http.HttpSession;
 
@@ -44,8 +38,8 @@ public class logInController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Loginning lgn = new Loginning();
-        String email = java.net.URLDecoder.decode(request.getParameter("loginemail"), "UTF-8");
-        String password = java.net.URLDecoder.decode(request.getParameter("loginpassword"), "UTF-8");
+        String email = request.getParameter("loginemail");
+        String password = request.getParameter("loginpassword");
         userModel uM = lgn.authenticate(email, password);
   
         if (!uM.equals(null)){

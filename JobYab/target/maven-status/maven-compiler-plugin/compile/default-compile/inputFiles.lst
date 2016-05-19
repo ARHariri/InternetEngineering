@@ -7,9 +7,11 @@ C:\Users\sajad\Documents\NetBeansProjects\JobYab\src\main\java\com\jobyab\DAO\Us
 C:\Users\sajad\Documents\NetBeansProjects\JobYab\src\main\java\com\jobyab\entities\Skills.java
 C:\Users\sajad\Documents\NetBeansProjects\JobYab\src\main\java\com\jobyab\controllers\registerController.java
 C:\Users\sajad\Documents\NetBeansProjects\JobYab\src\main\java\com\jobyab\auxiliaries\userType.java
+C:\Users\sajad\Documents\NetBeansProjects\JobYab\src\main\java\com\jobyab\controllers\userProfileController.java
 C:\Users\sajad\Documents\NetBeansProjects\JobYab\src\main\java\com\jobyab\models\advertisement.java
 C:\Users\sajad\Documents\NetBeansProjects\JobYab\src\main\java\com\jobyab\entities\Jobseeker.java
 C:\Users\sajad\Documents\NetBeansProjects\JobYab\src\main\java\com\jobyab\entities\Employer.java
+C:\Users\sajad\Documents\NetBeansProjects\JobYab\src\main\java\com\jobyab\services\userInfoUpdating.java
 C:\Users\sajad\Documents\NetBeansProjects\JobYab\src\main\java\com\jobyab\entities\MsgboxPK.java
 C:\Users\sajad\Documents\NetBeansProjects\JobYab\src\main\java\com\jobyab\entities\Msgbox.java
 C:\Users\sajad\Documents\NetBeansProjects\JobYab\src\main\java\com\jobyab\services\Loginning.java

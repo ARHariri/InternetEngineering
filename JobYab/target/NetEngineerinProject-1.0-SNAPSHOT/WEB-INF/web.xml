@@ -3,10 +3,15 @@
     <servlet>
         <servlet-name>logInController</servlet-name>
         <servlet-class>com.jobyab.controllers.logInController</servlet-class>
+        <url-pattern>/register</url-pattern>
     </servlet>
     <servlet>
         <servlet-name>registerController</servlet-name>
         <servlet-class>com.jobyab.controllers.registerController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>userProfileController</servlet-name>
+        <servlet-class>com.jobyab.controllers.userProfileController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>logInController</servlet-name>
@@ -15,6 +20,10 @@
     <servlet-mapping>
         <servlet-name>registerController</servlet-name>
         <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>userProfileController</servlet-name>
+        <url-pattern>/userProfileController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -1,6 +1,7 @@
 com\jobyab\entities\Jobseeker.class
 com\jobyab\entities\Tags.class
 com\jobyab\models\userModel.class
+com\jobyab\controllers\userProfileController.class
 com\jobyab\services\Loginning.class
 com\jobyab\entities\Msgbox_.class
 com\jobyab\entities\User_.class
@@ -17,6 +18,7 @@ com\jobyab\entities\Msgbox.class
 com\jobyab\controllers\logInController.class
 com\jobyab\controllers\registerController.class
 com\jobyab\entities\Skills.class
+com\jobyab\services\userInfoUpdating.class
 com\jobyab\entities\Employer_.class
 com\jobyab\entities\Jobseeker_.class
 com\jobyab\DAO\CoreDAO.class

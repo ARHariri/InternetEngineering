@@ -13,26 +13,27 @@
 .persian-label
 {
 	font-family: persianButtonLabel;
-	text-align: right;
+	font-size: 18px;
+        text-align: right;
 	text-decoration: none;
 	direction: rtl;
 }
 
 .persian-btn
 {
-	font-size: 16px;
+	font-size: 18px;
 	font-style: bold;
 	text-align: center;
 }
 
 .persian-textbox
 {
-	font-size: 14px;
+	font-size: 16px;
 }	
 
 .persian-text
 {
-	font-size: 14px;	
+	font-size: 20px;	
 }
 
 .persian-link

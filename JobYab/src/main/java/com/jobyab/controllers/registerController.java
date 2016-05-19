@@ -55,8 +55,8 @@ public class registerController extends HttpServlet {
             
         switch( kind ){
             case "jobseeker":{
-                String lName = request.getParameter("firstName");
-                String fName = request.getParameter("lastName");
+                String fName = request.getParameter("firstName");
+                String lName = request.getParameter("lastName");
                 uM.setFirstName(fName);
                 uM.setLastName(lName);
                 uM.setKind("jobSeeker");

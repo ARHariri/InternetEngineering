@@ -49,7 +49,7 @@
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="UserName">
                                                                     <%
                                                                         userModel user = (userModel) request.getSession().getAttribute("user");
-                                                                        out.print(user.getLastName() + " " + user.getFirstName()); 
+                                                                        out.print(user.getFirstName() + " " + user.getLastName()); 
                                                                     %>  
                                                                 </a>
 								<ul class="dropdown-menu">
