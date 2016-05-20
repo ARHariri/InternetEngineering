@@ -32,49 +32,85 @@
 	<!--Header bar-->
 	<header>
 		<nav class="navbar navbar-default navbar-fixed-top">
-		    <div class="container-fluid">
-		    	<a class="navbar-brand navbar-left" href="#" style="">
-		    		<img src="references/images/logo.png" height="30" width="25" />
-		    	</a>
-		        <div class="collapse navbar-collapse persian-label persian-text">
-					<ul class="nav tabs navbar-nav navbar-right">
-						<li>
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="UserName"> </a>
-							<ul class="dropdown-menu">
-		                        <li align="center">
-									<img class="pic" src="references/images/user-default.png" width="auto" height="auto">
-								</li>
-								<li class="divider"></li>
-								<li align="center">
-									<a href="">پروفایل</a>
-								</li>
-								<li class="divider"></li>
-								<li align="center">
-		                        	<a href="">خروج</a>
-		                        </li>
-		                    </ul>
-	                    </li>
-	                    <li class="">
-	                    	<a href="#">خانه</a>
-	                    </li>
-	                    <li name="jobSeeker">
-	                    	<a href="#">جست و جو</a>
-	                    </li>
-						<li name="jobSeeker">
-							<a href="#">ارسال رزومه</a>
-						</li>
-						<li name="employer">
-							<a href="#">ثبت آگهی</a>
-						</li>
-						<li>
-							<a href="#">درباره ما</a>
-						</li>
-						<li>
-							<a href="#">قوانین سایت</a>
-						</li>
-					</ul>
-				</div>
-			</div>
+		    <div class="row">
+		    	<div class="container-fluid">
+			    <a class="navbar-brand navbar-left" href="#" style="">
+                                <img src="references/images/logo.png" height="30" width="25" />
+                            </a>
+			    <div class="collapse navbar-collapse persian-label persian-text">
+                                <ul class="nav tabs navbar-nav navbar-right">
+                                    <li>
+                                        <button id="searchButton" class="btn btn-primary" style="margin: 8px;" onclick="ShowSearch();">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="UserName">
+                                            <% 
+                                                if(user.getKind().compareToIgnoreCase("jobseeker") == 0)
+                                                    out.print(user.getFirstName() + " " + user.getLastName()); 
+                                                else if(user.getKind().compareToIgnoreCase("employer") == 0)
+                                                    out.print(user.getCompanyName() + "شرکت");
+                                            %>  
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li align="center">
+                                                <img class="pic" src="references/images/user-default.png" width="auto" height="auto">
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li align="center">
+                                                <a href="userProfile.jsp">پروفایل</a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li align="center">
+                                                <a href="">خروج</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="">
+                                        <a href="#">خانه</a>
+                                    </li>
+                                    <%
+                                        if(user.getKind().compareToIgnoreCase("jobseeker") == 0){
+                                    %>
+                                    <li name="jobSeeker">
+                                        <a href="#">جست و جو</a>
+                                    </li>
+                                    <li name="jobSeeker">
+                                        <a href="#">ارسال رزومه</a>
+                                    </li>
+                                    <%  }
+                                        else if(user.getKind().compareToIgnoreCase("employer") == 0) {
+                                    %>
+                                    <li name="employer">
+                                        <a href="#">ثبت آگهی</a>
+                                    </li>
+                                    <% } %>
+                                    <li>
+                                        <a href="#">درباره ما</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">قوانین سایت</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+		    </div>
+
+		    <div class="row" id="SimpleSearchBox" style="display: none;">
+		    	<div class="container-fluid">
+                            <div class="collapse navbar-collapse persian-label persian-text">
+                                <form action="#" method="get">
+                                    <div class="form-group form-group-lg">
+                                        <div class="col-lg-12">
+                                            <input class="form-control" type="text" name="searchBox" placeholder="عنوان مورد نظر را برای جست و جو نوشته و enter را بزنید"/>
+					</div>
+                                    </div>
+				</form>
+                            </div>
+		    	</div>
+		    </div>
+                                    
 		</nav>
 	</header>
 

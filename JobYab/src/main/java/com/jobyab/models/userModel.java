@@ -28,6 +28,21 @@ public class userModel {
 
     private String kind;
     
+    private boolean isLogInned;
+    
+    public userModel()
+    {
+        
+    }
+
+    public boolean isLogInned() {
+        return isLogInned;
+    }
+
+    public void setLogInned(boolean isLogInned) {
+        this.isLogInned = isLogInned;
+    }
+    
     public String getCompanyAddress() {
         return companyAddress;
     }
@@ -60,11 +75,6 @@ public class userModel {
         this.imageDir = imageDir;
     }
     
-    public userModel()
-    {
-        
-    }
-
     public String getEmail() {
         return email;
     }

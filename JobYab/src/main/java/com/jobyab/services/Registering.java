@@ -72,6 +72,7 @@ public class Registering {
         CoreDAO<Employer> employerDAO = new CoreDAO<Employer>(Employer.class);
         
         Employer eDAO = new Employer();
+        eDAO.setEmployerId(user.getUserId());
         eDAO.setCoName(uModel.getCompanyName());
         eDAO.setCoTel(uModel.getCompanyTell());
         

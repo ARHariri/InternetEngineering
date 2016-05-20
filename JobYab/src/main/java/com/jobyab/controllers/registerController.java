@@ -64,7 +64,7 @@ public class registerController extends HttpServlet {
                     if( rgstr.registerJobSeeker( uM ) )
                         response.sendRedirect("success.jsp");
                     else
-                    response.sendRedirect("failregister.jsp");
+                        response.sendRedirect("failregister.jsp");
                     
             }
             break;
@@ -77,8 +77,8 @@ public class registerController extends HttpServlet {
                 try {
                     if(rgstr.registerEmployer(uM))
                         response.sendRedirect("success.jsp");
-                    
-                    response.sendRedirect("failregister.jsp");
+                    else
+                        response.sendRedirect("failregister.jsp");
                     
                 } catch (Exception e) {
                     response.sendRedirect("failregister.jsp");
