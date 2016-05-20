@@ -31,6 +31,10 @@ public class CoreDAO<T> {
         
         this.entityClass = entityClass;
     }
+
+    public CoreDAO() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     public T add(T t){
         try {

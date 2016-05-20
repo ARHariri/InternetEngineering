@@ -30,7 +30,7 @@ public class UserDAO {
         try {
             return (User) em.createNamedQuery("User.fetch")
             .setParameter("email", email)
-            .setParameter("password",password)
+            .setParameter("password", password)
             .getSingleResult();
          //   return (User) em.createQuery("SELECT u FROM User u WHERE u.email =" + email + " AND u.password=" + password);
         } catch (Exception e) {

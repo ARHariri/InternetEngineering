@@ -1,6 +1,7 @@
 com\jobyab\entities\Jobseeker.class
 com\jobyab\entities\Tags.class
 com\jobyab\models\advertisementModel.class
+com\jobyab\controllers\addAdsController.class
 com\jobyab\models\userModel.class
 com\jobyab\controllers\userProfileController.class
 com\jobyab\services\Loginning.class

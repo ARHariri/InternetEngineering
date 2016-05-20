@@ -7,6 +7,7 @@ package com.jobyab.services;
 
 import com.jobyab.DAO.*;
 import com.jobyab.entities.Advertisement;
+import com.jobyab.entities.Employer;
 import java.util.List;
 import com.jobyab.models.advertisementModel;
 import java.util.ArrayList;
@@ -50,6 +51,35 @@ public class AdsHandler {
         catch(Exception e){
             return null;
         }
+    }
+    
+    public boolean addAds(advertisementModel adsModel){
+        
+        CoreDAO<Advertisement> adsDAO = new CoreDAO<Advertisement>(Advertisement.class);
+        
+        Advertisement ads = new Advertisement();
+        
+        ads.setAdTitle(adsModel.getTitle());
+        ads.setAdBody(adsModel.getContent());
+        ads.setAdType(adsModel.getType());
+        ads.setMaxSalary(adsModel.getMaxSalary());
+        ads.setMinSalary(adsModel.getMinSalary());
+        ads.setAdImage(adsModel.getAdsImageDir());
+        
+        employerDAO eDAO = new employerDAO();
+        Employer eObj = eDAO.findByName(adsModel.getCompanyName());
+        
+        if(eObj == null)
+            return false;
+        
+        ads.setCoId(eObj);
+        
+        ads = adsDAO.add(ads);
+        
+        if(ads == null)
+            return false;
+        
+        return true;
     }
     
 }

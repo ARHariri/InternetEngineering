@@ -5,6 +5,8 @@
  */
 package com.jobyab.models;
 
+import java.util.List;
+
 /**
  *
  * @author Ali
@@ -19,11 +21,30 @@ public class advertisementModel {
     private String adsImageDir;
     private int minSalary;
     private int maxSalary;
+    private List<String> tags;
+    private String type;
     
     public advertisementModel(){
         
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
+
+    
     public int getMinSalary() {
         return minSalary;
     }
