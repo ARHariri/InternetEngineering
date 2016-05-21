@@ -8,6 +8,7 @@ package com.jobyab.services;
 import com.jobyab.DAO.*;
 import com.jobyab.entities.Advertisement;
 import com.jobyab.entities.Employer;
+import com.jobyab.entities.Tags;
 import java.util.List;
 import com.jobyab.models.advertisementModel;
 import java.io.File;
@@ -15,6 +16,10 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import javax.faces.view.facelets.Tag;
 import javax.servlet.http.Part;
 import org.apache.commons.io.FileUtils;
 /**
@@ -27,9 +32,11 @@ public class AdsHandler {
         
     }
     
-//    public List<advertisement> getAds(){
-//        
-//    }
+    public List<Advertisement> getAds(){
+        AdsDAO adsDAO = new AdsDAO();
+        
+        return adsDAO.readAll();
+    }
     
     public List<advertisementModel> getAds(int adsNumber){
         AdsDAO adsDAO = new AdsDAO();
@@ -85,6 +92,10 @@ public class AdsHandler {
         if(ads == null)
             return false;
         
+        //Adding tags to tag table
+        if(!addingTags(adsModel.getTags(), ads))
+            return false;
+        
         return true;
     }
     
@@ -114,6 +125,49 @@ public class AdsHandler {
         }
         catch(Exception e){
             return null;
+        }
+        
+    }
+    
+    private boolean addingTags(List<String> tagList, Advertisement ads){
+        
+        try{
+            TagsDAO tDAO = new TagsDAO();
+        
+            List<Tags> tagObjs = tDAO.readAll();
+
+            Map<String, Short> tagDetail = new HashMap<String, Short>();
+
+            for(Tags tag : tagObjs){
+                tagDetail.put(tag.getTagName(), tag.getTagId());
+            }
+
+            for(String tag : tagList){
+                CoreDAO<Tags> tagDAO = new CoreDAO<Tags>(Tags.class);
+
+
+                if(tagDetail.containsKey(tag)){
+                    Tags tObj = tagDAO.read(tagDetail.get(tag));
+
+                    Collection<Advertisement> adsCollection = tObj.getAdvertisementCollection();
+
+                    adsCollection.add(ads);
+                }
+                else{
+                    //Add tag Name to tag table
+
+                    Tags tObj = new Tags();
+                    tObj.setTagName(tag);
+
+                    tagDAO.add(tObj);
+                }
+
+            }
+            
+            return true;
+        }
+        catch(Exception e){
+            return false;
         }
         
     }
