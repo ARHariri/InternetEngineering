@@ -45,13 +45,13 @@
                                 </ul>
                             </li>
                             <li class="">
-                                <a href="maiPage.jsp">خانه</a>
+                                <a href="mainPage.jsp">خانه</a>
                             </li>
                                 <%
                                     if(user.getKind().compareToIgnoreCase("jobseeker") == 0){
                                 %>
                             <li name="jobSeeker">
-                                <a href="#">جست و جو</a>
+                                <a href="advancedSearch.jsp">جست و جو</a>
                             </li>
                             <li name="jobSeeker">
                                 <a href="#">ارسال رزومه</a>

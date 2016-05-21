@@ -5,11 +5,20 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="com.jobyab.models.userModel" %>
+
+<%
+    userModel user = (userModel) request.getSession().getAttribute("user");
+    
+    if(!user.isLogInned())
+        response.sendRedirect("index.jsp");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8"/>
-	<title>Site Name</title>
+	<title>جاب یاب</title>
 	<link rel="stylesheet" type="text/css" href="references/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="references/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="references/css/bootstrap-theme.css">
@@ -31,160 +40,14 @@
 </head>
 <body>
 	<!--Header bar-->
-	<header>
-		<nav class="navbar navbar-default navbar-fixed-top">
-		    <div class="row">
-		    	<div class="container-fluid">
-			    <a class="navbar-brand navbar-left" href="#" style="">
-                                <img src="references/images/logo.png" height="30" width="25" />
-                            </a>
-			    <div class="collapse navbar-collapse persian-label persian-text">
-                                <ul class="nav tabs navbar-nav navbar-right">
-                                    <li>
-                                        <button id="searchButton" class="btn btn-primary" style="margin: 8px;" onclick="ShowSearch();">
-                                            <span class="glyphicon glyphicon-search"></span>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="UserName">
-                                            <% 
-                                                if(user.getKind().compareToIgnoreCase("jobseeker") == 0)
-                                                    out.print(user.getFirstName() + " " + user.getLastName()); 
-                                                else if(user.getKind().compareToIgnoreCase("employer") == 0)
-                                                    out.print(user.getCompanyName() + "شرکت");
-                                            %>  
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li align="center">
-                                                <img class="pic" src="references/images/user-default.png" width="auto" height="auto">
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li align="center">
-                                                <a href="userProfile.jsp">پروفایل</a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li align="center">
-                                                <a href="">خروج</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="">
-                                        <a href="#">خانه</a>
-                                    </li>
-                                    <%
-                                        if(user.getKind().compareToIgnoreCase("jobseeker") == 0){
-                                    %>
-                                    <li name="jobSeeker">
-                                        <a href="#">جست و جو</a>
-                                    </li>
-                                    <li name="jobSeeker">
-                                        <a href="#">ارسال رزومه</a>
-                                    </li>
-                                    <%  }
-                                        else if(user.getKind().compareToIgnoreCase("employer") == 0) {
-                                    %>
-                                    <li name="employer">
-                                        <a href="#">ثبت آگهی</a>
-                                    </li>
-                                    <% } %>
-                                    <li>
-                                        <a href="#">درباره ما</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">قوانین سایت</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-		    </div>
+        <%@include file="header.jsp" %>
 
-		    <div class="row" id="SimpleSearchBox" style="display: none;">
-		    	<div class="container-fluid">
-                            <div class="collapse navbar-collapse persian-label persian-text">
-                                <form action="#" method="get">
-                                    <div class="form-group form-group-lg">
-                                        <div class="col-lg-12">
-                                            <input class="form-control" type="text" name="searchBox" placeholder="عنوان مورد نظر را برای جست و جو نوشته و enter را بزنید"/>
-					</div>
-                                    </div>
-				</form>
-                            </div>
-		    	</div>
-		    </div>
-                                    
-		</nav>
-	</header>
-
-	<!--Right side bar-->
+	
 	<div class="container persian-label" style="margin-top: 60px; margin-right: -5px;">
 		<div class="row">
-			<div class="col-md-3 sidebar persian-label">
-				<div class="list-group panel">
-			        <a href="#" class="list-group-item">
-			            <i class="fa fa-comment-o"></i> پروفایل
-			        </a>			        
-
-					<a href="#Box" class="list-group-item" data-toggle="collapse">
-						<i class="fa fa-envelope fa-caret-down"></i> جعبه اطلاع <span class="badge">14</span>
-					</a>
-
-					<div class="collapse" id="Box">
-						<a href="#" class="list-group-item">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspجعبه ورودی</a>
-            			<a href="#" class="list-group-item">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspجعبه خروجی</a>
-					</div>
-
-			    </div>
-
-			    <div class="list-group">
-			    	<span href="#" class="list-group-item active" align="center">
-			            آخرین کارهای ثبت شده
-			            <span class="pull-right" id="slide-submenu">
-			                <i class="fa fa-times"></i>
-			            </span>
-			        </span>
-
-			    	<a href="#" class="list-group-item">
-			            <i class="fa fa-comment-o"></i> کار1
-			        </a>
-			        
-			        <a href="#" class="list-group-item">
-			            <i class="fa fa-comment-o"></i> کار2
-			        </a>
-
-			        <a href="#" class="list-group-item">
-			            <i class="fa fa-comment-o"></i> کار3
-			        </a>
-
-			        <a href="#" class="list-group-item">
-			            <i class="fa fa-comment-o"></i> کار4
-			        </a>
-
-			        <a href="#" class="list-group-item">
-			            <i class="fa fa-comment-o"></i> کار5
-			        </a>
-
-			        <a href="#" class="list-group-item">
-			            <i class="fa fa-comment-o"></i> کار6
-			        </a>
-
-			        <a href="#" class="list-group-item">
-			            <i class="fa fa-comment-o"></i> کار7
-			        </a>
-
-			        <a href="#" class="list-group-item">
-			            <i class="fa fa-comment-o"></i> کار8
-			        </a>
-
-			        <a href="#" class="list-group-item">
-			            <i class="fa fa-comment-o"></i> کار9
-			        </a>
-
-			        <a href="#" class="list-group-item">
-			            <i class="fa fa-comment-o"></i> کار10
-			        </a>
-			    </div>
-
-			</div>
+                    <!--Right side bar-->
+                    <%@include file="rightSideBar.jsp" %>
+                    
 			<div class="col-md-9">
 				<div class="row">
 					<div class="col-md-3 list-group-item">

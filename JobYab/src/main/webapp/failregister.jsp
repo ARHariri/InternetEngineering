@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta charset="utf-8"/>
-	<title>Site Name</title>
+	<title>جاب یاب</title>
 	<link rel="stylesheet" type="text/css" href="references/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="references/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="references/css/bootstrap-theme.css">

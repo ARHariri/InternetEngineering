@@ -5,11 +5,20 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="com.jobyab.models.userModel" %>
+
+<%
+    userModel user = (userModel) request.getSession().getAttribute("user");
+    
+    if(!user.isLogInned())
+        response.sendRedirect("index.jsp");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8"/>
-	<title>Site Name</title>
+	<title>جاب یاب</title>
 	<link rel="stylesheet" type="text/css" href="references/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="references/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="references/css/bootstrap-theme.css">
