@@ -10,7 +10,13 @@ import com.jobyab.entities.Advertisement;
 import com.jobyab.entities.Employer;
 import java.util.List;
 import com.jobyab.models.advertisementModel;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
+import javax.servlet.http.Part;
+import org.apache.commons.io.FileUtils;
 /**
  *
  * @author Ali
@@ -80,6 +86,36 @@ public class AdsHandler {
             return false;
         
         return true;
+    }
+    
+    public String saveToPath(Part filePart){
+        
+        try{
+            String filePath = "../../../../webapp/references/images/adsImages";
+            String fileName = filePart.getSubmittedFileName();
+            String fileExtention = fileName.substring(fileName.lastIndexOf('.') + 1);
+            
+            File file = new File(filePath);
+            
+            InputStream fileContent = filePart.getInputStream();
+            
+            //File targetFile = new File(filePath + fileName);
+            File targetFile = File.createTempFile(fileName,
+                                                  fileExtention,
+                                                  file);
+            
+            byte[] buffer = new byte[fileContent.available()];
+            fileContent.read(buffer);
+            
+            OutputStream outputStream = new FileOutputStream(targetFile);
+            outputStream.write(buffer);
+            
+            return filePath + fileName;
+        }
+        catch(Exception e){
+            return null;
+        }
+        
     }
     
 }

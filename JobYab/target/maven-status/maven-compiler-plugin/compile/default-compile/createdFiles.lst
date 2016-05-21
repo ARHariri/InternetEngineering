@@ -4,6 +4,7 @@ com\jobyab\models\advertisementModel.class
 com\jobyab\controllers\addAdsController.class
 com\jobyab\models\userModel.class
 com\jobyab\controllers\userProfileController.class
+com\jobyab\DAO\employerDAO.class
 com\jobyab\services\Loginning.class
 com\jobyab\entities\Msgbox_.class
 com\jobyab\entities\User_.class

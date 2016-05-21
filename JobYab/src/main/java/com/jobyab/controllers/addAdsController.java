@@ -14,14 +14,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author Ali
  */
+@MultipartConfig
 public class addAdsController extends HttpServlet {
 
     /**
@@ -42,6 +45,7 @@ public class addAdsController extends HttpServlet {
         
         String adsTitle = request.getParameter("adsTitle");
         String adsContent = request.getParameter("adsContent");
+        Part filePart = request.getPart("adsImage");
         String adsType = request.getParameter("adsType");
         String minSalary = request.getParameter("minSalary");
         String maxSalary = request.getParameter("maxSalary");
@@ -54,6 +58,18 @@ public class addAdsController extends HttpServlet {
         adsModel.setMinSalary(Integer.parseInt(minSalary));
         adsModel.setMaxSalary(Integer.parseInt(maxSalary));
         
+        AdsHandler adsHandler = new AdsHandler();
+        
+        //Save image to a path and get image directory
+        String filePath = adsHandler.saveToPath(filePart);
+        
+        if(filePath == null){               //Can not save image
+            response.sendRedirect("addAds.jsp?");
+            return;
+        }
+        
+        adsModel.setAdsImageDir(filePath);
+        
         List<String> tagList = Arrays.asList(tags.split("\\s*,\\s*"));
         
         adsModel.setTags(tagList);
@@ -62,8 +78,6 @@ public class addAdsController extends HttpServlet {
         
         adsModel.setCompanyImageDir(uM.getImageDir());
         adsModel.setCompanyName(uM.getCompanyName());
-        
-        AdsHandler adsHandler = new AdsHandler();
         
         if(adsHandler.addAds(adsModel)){
             response.sendRedirect("addAds.jsp?");

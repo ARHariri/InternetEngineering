@@ -48,8 +48,9 @@
 			<div class="col-md-9">
 				<div class="row" style="margin: 10px;">
                                     <div class="col-md-12">
-                                        <form class="form-horizontal persian-form" action="addAdsController" method="post"
-                                              
+                                        <form class="form-horizontal persian-form" action="addAdsController"
+                                              method="post"
+                                              enctype="multipart/form-data"
                                               >
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
@@ -82,6 +83,14 @@
                                                                            class="persian-label persian-text form-control"
                                                                            name="adsContent"
                                                                            placeholder="متن آگهی"/>
+                                                                </div>
+                                                                
+                                                                <hr/>
+                                                                
+                                                                <div style="margin: 15px;">
+                                                                    <input type="file"
+                                                                           name="adsImage"
+                                                                           alt="عکس آگهی"/>
                                                                 </div>
                                                                 
                                                                 <hr/>
