@@ -49,6 +49,7 @@ public class Loginning {
                     um.setUserTel(jObj.getTel());
                     um.setCity(jObj.getCity());
                     um.setImageDir(jObj.getUserImage());
+                    um.setUserID(uObj.getUserId());
                 }
                     break;
                 

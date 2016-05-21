@@ -6,6 +6,7 @@
 package com.jobyab.models;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -32,6 +33,16 @@ public class userModel {
     private String skills;
     
     private boolean isLogInned;
+    
+    private List<String> skillsList;
+
+    public List<String> getSkillsList() {
+        return skillsList;
+    }
+
+    public void setSkillsList(List<String> skillsList) {
+        this.skillsList = skillsList;
+    }
 
     public String getSkills() {
         return skills;
