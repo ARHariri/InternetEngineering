@@ -44,6 +44,7 @@ public class Loginning {
 
                     um.setKind("jobSeeker");
                     um.setFirstName(jObj.getFirstName());
+                    um.setUserID(uObj.getUserId());
                     jObj.getFirstName();
                     um.setLastName(jObj.getLastName());
                     um.setUserTel(jObj.getTel());

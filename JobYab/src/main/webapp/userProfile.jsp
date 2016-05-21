@@ -36,7 +36,7 @@
 		        <div class="collapse navbar-collapse persian-label persian-text">
 					<ul class="nav tabs navbar-nav navbar-right">
 						<li>
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="UserName"> </a>
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="UserName"><% out.print(user.getFirstName() + " " + user.getLastName()); %> </a>
 							<ul class="dropdown-menu">
 		                        <li align="center">
 									<img class="pic" src="references/images/user-default.png" width="auto" height="auto">
@@ -150,20 +150,15 @@
 					<div class="col-md-3">
                                                 <div class="list-group-item">
                                                     <img src="references/images/user-default.png" width="130" height="130"/>
-                                                    <ul class="nav" style="font-size: 15px; margin-top: 10px;">
-                                                            <li><a href="#infos">اطلاعات کاربر</a></li>
-                                                            <li><a href="#done">سوابق کاری</a></li>
-                                                            <li><a href="#resume">رزومه</a></li>
-                                                    </ul>
                                                 </div>
-                                                <div class="persian-text" id="ajaxRes" style="text-align: center; font-family: IRB; background: green;"></div>
+                                                <div class="persian-text" id="ajaxRes" style="text-align: center; font-family: IRB; background: #7fff7f; margin-top: 20px;"></div>
 					</div><div class="col-md-9">
                                             <form id="userUpdateForm" action="userProfileController" method="post">
                                                 <h3 id="infos" class="page-header text-info persian-text">اطلاعات کاربر</h3>
 						<label class="persian-label" for="username">نام کاربری / رایانامه</label>
                                                 <input type="text" class="form-control persian-textbox" placeholder="<% out.print(user.getEmail()); %>" id="email" style="direction:ltr"/>
 						<label for="pwd" style="font-size: 16px">رمز عبور</label>
-						<input type="password" class="form-control persian-textbox" id="pasword" placeholder="*****" style="direction: ltr"/>
+						<input type="password" class="form-control persian-textbox" id="password" placeholder="*****" style="direction: ltr"/>
 						<label for="firstName" style="font-size: 16px">نام</label>
 						<input type="text" class="form-control persian-textbox" id="firstName" placeholder="<% out.print(user.getFirstName()); %>" style="direction: rtl"/>
 						<label for="lastName" style="font-size: 16px">نام حانوادگی</label>
@@ -192,8 +187,6 @@
 <script type="text/javascript">
 	window.onload = function()
 	{
-		document.getElementById("UserName").innerHTML = "Ali Alavi";
-
 		var b = document.createElement('B');
 		b.className = "caret";
 		document.getElementById("UserName").appendChild(b);

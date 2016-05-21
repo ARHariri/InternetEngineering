@@ -5,12 +5,8 @@
  */
 
 jQuery(document).ready(function (){
-    console.log("Runnung");
-   
+      
    $(document).on("submit", "#userUpdateForm", function(event) {
-       
-    var $form = $(this);
-    
         $.ajax({
                type: "post",
                url : 'userProfileController',
@@ -22,29 +18,17 @@ jQuery(document).ready(function (){
                    "city" : $("#city").val()
                },
                success: function (responseText){
-                   console.log("sasa");
-                   $("#ajaxRes").text(responseText);
+                   $("#ajaxRes").text(responseText)
+                           .delay(2000)
+                           .fadeOut('slow');
+               },
+               error: function(){
+                   $("#ajaxRes").text(responseText)
+                           .css("background-color","yellow")
+                           .delay(2000).fadeOut('slow');
                }
     });
     event.preventDefault(); // Important! Prevents submitting the form.
 });
-    
-//    $("#updateButtun").click(function(){
-//       $.ajax({
-//               type: "post",
-//               url : 'userProfileController',
-//               data: {
-//                   email : $("#email").val(),
-//                   password : $("#password").val(),
-//                   firstName: $("#firstName").val(),
-//                   lastName: $("#lastName").val(),
-//                   city : $("#city").val()
-//               },
-//               success: function (responseText){
-//                   console.log("sasa");
-//                   $("#ajaxRes").text(responseText);
-//               }
-//           });
-//           console.log("dn");
-//   }); 
+
 });

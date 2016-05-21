@@ -8,12 +8,7 @@ package com.jobyab.services;
 import com.jobyab.DAO.*;
 import com.jobyab.models.*;
 import com.jobyab.entities.*;
-import java.io.PrintWriter;
-import com.jobyab.auxiliaries.*;
 import java.security.MessageDigest;
-import java.util.HashSet;
-import java.util.Set;
-import org.apache.taglibs.standard.lang.jstl.Coercions;
 /**
  *
  * @author Ali
@@ -52,6 +47,7 @@ public class Registering {
         CoreDAO<Jobseeker> jobSeekerDAO = new CoreDAO<Jobseeker>(Jobseeker.class);
         Jobseeker jDAO = new Jobseeker();
         jDAO.setJobSeekerid(user.getUserId());
+        uModel.setUserID(user.getUserId());
         jDAO.setFirstName(uModel.getFirstName());
         jDAO.setLastName(uModel.getLastName());
         jDAO.setBirthDate(uModel.getBirthDate());

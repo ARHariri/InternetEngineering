@@ -8,10 +8,16 @@ package com.jobyab.controllers;
 import com.jobyab.models.userModel;
 import com.jobyab.services.userInfoUpdating;
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 /**
  *
@@ -30,10 +36,11 @@ public class userProfileController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        userInfoUpdating update = new userInfoUpdating();
+        userInfoUpdating infoUpdate = new userInfoUpdating();
         
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/plain");
         
         String email = request.getParameter("email");
         String pwd = request.getParameter("password");
@@ -41,19 +48,21 @@ public class userProfileController extends HttpServlet {
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         
-//        if (pwd != null || city != null || firstName != null || lastName != null){
-//            userModel uM = update.update(email, pwd, city, firstName, lastName);
-//            
-//            if(uM != null){
-//                
-//            }
-//          
-        boolean ajax = "XMLHttpRequest".equals(request.getHeader("X-Requested-With"));
-        if (ajax) {
-            response.setContentType("text/plain");
-            response.getWriter().print("اطلاعات با موفقیت تغییر یافت!");
-        } 
         
+        if (email != null && pwd != null && firstName != null && lastName != null){
+            userModel uM = (userModel) request.getSession().getAttribute("user");
+            
+            if ( infoUpdate.updateUser(uM, email, pwd, firstName, lastName, city )){
+                 boolean ajax = "XMLHttpRequest".equals(request.getHeader("X-Requested-With"));
+                if (ajax) {
+                    HttpSession session =request.getSession();
+                    session.setAttribute("user", uM);
+                    response.getWriter().print("اطلاعات با موفقیت تغییر یافت!");
+                } 
+            }
+            else{
+                response.getWriter().print("خطایی رخ داده است!");
+            }
+        }
     }
-
 }

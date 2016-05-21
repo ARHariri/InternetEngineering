@@ -25,8 +25,17 @@ public class userModel {
     private String userTel;
     private String city;
     private String imageDir;
-
+    private short userID;
+    
     private String kind;
+
+    public short getUserID() {
+        return userID;
+    }
+
+    public void setUserID(short userID) {
+        this.userID = userID;
+    }
     
     public String getCompanyAddress() {
         return companyAddress;

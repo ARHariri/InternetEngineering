@@ -6,20 +6,9 @@
 package com.jobyab.controllers;
 
 import com.ghasemkiani.util.icu.PersianCalendar;
-import com.jobyab.entities.User;
 import com.jobyab.models.userModel;
 import com.jobyab.services.Registering;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

@@ -5,7 +5,10 @@
  */
 package com.jobyab.DAO;
 
+import com.jobyab.entities.Employer;
+import com.jobyab.entities.Jobseeker;
 import com.jobyab.entities.User;
+import com.jobyab.models.userModel;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -37,5 +40,57 @@ public class UserDAO {
             return null;
         }            
     }
+    
+    public boolean userUpdate(userModel uModel){
+        User uDAO =  em.find(User.class, uModel.getUserID());
+        try {
+            etx.begin();
+            uDAO.setEmail(uModel.getEmail());
+            uDAO.setPassword(uModel.getPasswrod());
+            etx.commit();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
+    public boolean jobSeekerUpdate( userModel uModel ){
+        if (userUpdate(uModel)){
+            Jobseeker jDAO =  em.find(Jobseeker.class, uModel.getUserID());
+            try {
+                etx.begin();
+                jDAO.setFirstName(uModel.getFirstName());
+                jDAO.setLastName(uModel.getLastName());
+                jDAO.setCity(uModel.getCity());
+                etx.commit();
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
+        
+    }
+    
+//    public boolean employerUpdate( userModel uModel ){
+//        if (userUpdate(uModel)){
+//            Employer jDAO =  em.find(Employer.class, uModel.getUserID());
+//            try {
+//                etx.begin();
+//                jDAO.setCoAddress(uModel.getFirstName());
+//                jDAO.setLastName(uModel.getLastName());
+//                jDAO.setCity(uModel.getCity());
+//                etx.commit();
+//                return true;
+//            } catch (Exception e) {
+//                return false;
+//            }
+//        }
+//        else{
+//            return false;
+//        }
+//    }
     
 }

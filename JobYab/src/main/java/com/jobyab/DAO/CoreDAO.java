@@ -44,7 +44,10 @@ public class CoreDAO<T> {
     }
     
     public T read(short id){
-        return em.find(entityClass, id);
-    }
-    
+        try {
+         return em.find(entityClass, id);   
+        } catch (Exception e) {
+        return null;
+        }
+    }    
 }
