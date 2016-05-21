@@ -32,8 +32,105 @@
 	<!--Header bar-->
         <%@include file="header.jsp" %>
 
-	<!--Right side bar-->
-        <%@include file="rightSideBar.jsp" %>
+	
+	<div class="container" style="margin-top: 60px; margin-right: -5px;">
+		<div class="row persian-label">
+                        
+                        <!--Right side bar-->
+                        <%@include file="rightSideBar.jsp" %>
+                        
+		<div class="col-md-9">
+				<div class="text-info text-center" style="background: #FFFFB2; font-size: 18px; margin-top: 15px">
+				<p>کاربر گرامی، لطفا موارد زیر را به دقت پر کنید تا نتایج بهتری را دریافت کنید.</p>
+				<p>در هر مورد، با استفاده از "," موارد مختلف را از هم جدا کنید</p></div>
+				<div class="list-group-item">
+					<h3 class="page-header text-info"><strong>کلمات کلیدی</strong></h3>
+					<p class="text-info text-center bg-info" style="font-size: 18px; margin-top: 15px">نتایج خود را به لینکهایی اختصاص دهید که کلمات کلیدی خاصی را داشته باشند</p>
+					<label for="username" style="font-size: 16px">شامل موارد زیر باشد: </label>
+					<input type="text" class="form-control persian-textbox" placeholder="" id="coName"/>
+					<label for="username" style="font-size: 16px">حداقل یکی از کلمات زیر را داشته باشد:</label>
+					<input type="text" class="form-control persian-textbox" placeholder="" id="coName"/>
+					<label for="username" style="font-size: 16px">موارد زیر را نداشته باشد: </label>
+					<input type="text" class="form-control persian-textbox" placeholder="" id="coName"/>
+					<label for="username" style="font-size: 16px">عبارت دقیق زیر را داشته باشد:</label>
+					<input type="text" class="form-control persian-textbox" placeholder="" id="coName"/>
+
+					<h3 class="page-header text-info"><strong>زمان</strong></h3>
+					<p class="text-info text-center bg-info" style="font-size: 18px; margin-top: 15px">نتایج خود را به لینکهایی اختصاص دهید که در بازه زمانی خاصی منتشر شده باشند</p>
+					<div class="radio"  style="font-size: 18px;">
+					  <label  style= "display: block"><input type="radio" name="optradio" id="anyTime">هر زمانی</label>
+					  <label><input type="radio" name="optradio" id="dateRange">بازه</label>
+					</div>
+						
+						<div class="form-group" style="display:none;" id="fromDate"><label class="col-lg-1" for="sel1" style="font-size: 18px; clear: both">از</label>
+						  <div class="col-lg-2">
+						  <select class="form-control" id="sel1" name="birthYear">
+							 <option value="noValue">سال ...</option>
+									<option value="1">1388</option>
+									<option value="2">1389</option>
+									<option value="3">1390</option>
+									<option value="4">1391</option>
+									<option value="5">1392</option>
+									<option value="6">1393</option>
+									<option value="7">1394</option>
+									<option value="8">1395</option>
+						  </select>
+						  </div><div class="col-lg-2"><select class="form-control" id="sel1" onchange="addDays();" name="birthMonth">
+							 <option value="noValue">ماه ...</option>
+									<option value="1">فروردین</option>
+									<option value="2">اردیبهشت</option>
+									<option value="3">خرداد</option>
+									<option value="4">تیر</option>
+									<option value="5">مرداد</option>
+									<option value="6">شهریور</option>
+									<option value="7">مهر</option>
+									<option value="8">آبان</option>
+									<option value="9">آذر</option>
+									<option value="10">دی</option>
+									<option value="11">بهمن</option>
+									<option value="12">اسفند</option>
+						  </select>
+						  </div><div class="col-lg-2"><select class="form-control" name="birthDay">
+							 <option value="noValue">روز ...</option>
+						  </select></div>
+						</div>
+						<div class="form-group" style="display:none;" id="toDate"><label class="col-lg-1" for="sel1" style="clear:both; font-size: 18px;">تا</label>
+						  <div class="col-lg-2">
+						  <select class="form-control" id="sel1" name="birthYear">
+							 <option value="noValue">سال ...</option>
+									<option value="1">1388</option>
+									<option value="2">1389</option>
+									<option value="3">1390</option>
+									<option value="4">1391</option>
+									<option value="5">1392</option>
+									<option value="6">1393</option>
+									<option value="7">1394</option>
+									<option value="8">1395</option>
+						  </select>
+						  </div><div class="col-lg-2"><select class="form-control" id="sel1" onchange="addDays();" name="birthMonth">
+							 <option value="noValue">ماه ...</option>
+									<option value="1">فروردین</option>
+									<option value="2">اردیبهشت</option>
+									<option value="3">خرداد</option>
+									<option value="4">تیر</option>
+									<option value="5">مرداد</option>
+									<option value="6">شهریور</option>
+									<option value="7">مهر</option>
+									<option value="8">آبان</option>
+									<option value="9">آذر</option>
+									<option value="10">دی</option>
+									<option value="11">بهمن</option>
+									<option value="12">اسفند</option>
+						  </select>
+						  </div><div class="col-lg-2"><select class="form-control" name="birthDay">
+							 <option value="noValue">روز ...</option>
+						  </select></div>
+						</div>
+					<input type="button" value="بگرد" id="addButton" style="width:100%; margin-top: 15px;" />
+				</div>
+			</div>
+		</div>
+	</div>
 
 </body>
 
