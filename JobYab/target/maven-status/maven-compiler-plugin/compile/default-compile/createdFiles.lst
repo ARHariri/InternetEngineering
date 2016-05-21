@@ -18,6 +18,7 @@ com\jobyab\entities\Advertisement_.class
 com\jobyab\entities\Tags_.class
 com\jobyab\entities\User.class
 com\jobyab\services\AdsHandler.class
+com\jobyab\services\ResumeHandler.class
 com\jobyab\entities\MsgboxPK.class
 com\jobyab\entities\Msgbox.class
 com\jobyab\controllers\logInController.class
@@ -28,8 +29,8 @@ com\jobyab\entities\Employer_.class
 com\jobyab\entities\Jobseeker_.class
 com\jobyab\DAO\CoreDAO.class
 com\jobyab\DAO\UserDAO.class
-com\jobyab\services\Search.class
 com\jobyab\entities\Languages.class
+com\jobyab\controllers\resumeController.class
 com\jobyab\DAO\TagsDAO.class
 com\jobyab\entities\Employer.class
 com\jobyab\services\Registering.class

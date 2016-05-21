@@ -29,7 +29,17 @@ public class userModel {
     
     private String kind;
     
+    private String skills;
+    
     private boolean isLogInned;
+
+    public String getSkills() {
+        return skills;
+    }
+
+    public void setSkills(String skills) {
+        this.skills = skills;
+    }
     
         public userModel()
     {

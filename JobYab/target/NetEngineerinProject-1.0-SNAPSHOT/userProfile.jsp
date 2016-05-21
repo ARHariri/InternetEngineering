@@ -41,11 +41,6 @@
 					<div class="col-md-3">
                                                 <div class="list-group-item">
                                                     <img src="references/images/user-default.png" width="130" height="130"/>
-                                                    <ul class="nav" style="font-size: 15px; margin-top: 10px;">
-                                                            <li><a href="#infos">اطلاعات کاربر</a></li>
-                                                            <li><a href="#done">سوابق کاری</a></li>
-                                                            <li><a href="#resume">رزومه</a></li>
-                                                    </ul>
                                                 </div>
                                                 <div class="persian-text" id="ajaxRes" style="text-align: center; font-family: IRB; background: green;"></div>
 					</div><div class="col-md-9">
@@ -64,7 +59,7 @@
 						
                                                 
                                                 <h3 id="resume" class="page-header text-info persian-text">رزومه</h3>
-						<p style="font-size: 18px;"><strong>برای ارسال رزومه <a>اینجا</a> را کلیک کنید</strong></p>
+                                                <p style="font-size: 18px;"><strong>برای ارسال رزومه <a href="userResume.jsp">اینجا</a> را کلیک کنید</strong></p>
 						
 						<h3 id="sbmt" class="page-header text-info persian-text">ثبت اطلاعات</h3>
 						<p style="font-size: 18px; background: #FFFFB2;"><strong>توجه: </strong> در صورتی که اطلاعات خود را ویرایش داده اید، ثبت اطلاعات را کلیک کنید</p>
