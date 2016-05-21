@@ -13,6 +13,10 @@
         <servlet-name>userProfileController</servlet-name>
         <servlet-class>com.jobyab.controllers.userProfileController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>addAdsController</servlet-name>
+        <servlet-class>com.jobyab.controllers.addAdsController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>logInController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -24,6 +28,10 @@
     <servlet-mapping>
         <servlet-name>userProfileController</servlet-name>
         <url-pattern>/userProfileController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addAdsController</servlet-name>
+        <url-pattern>/addAdsController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

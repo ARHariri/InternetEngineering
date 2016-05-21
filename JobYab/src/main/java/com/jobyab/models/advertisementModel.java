@@ -5,28 +5,62 @@
  */
 package com.jobyab.models;
 
+import java.util.List;
+
 /**
  *
  * @author Ali
  */
-public class advertisement {
+public class advertisementModel {
     
-    public String title;
-    public String content;
-    public String link;
-    public String companyName;
-    public String companyImageDir;
-    public String adsImageDir;
-
-    public advertisement(String title, String content, String link, String companyName, String companyImageDir, String adsImageDir) {
-        this.title = title;
-        this.content = content;
-        this.link = link;
-        this.companyName = companyName;
-        this.companyImageDir = companyImageDir;
-        this.adsImageDir = adsImageDir;
+    private String title;
+    private String content;
+    private String link;
+    private String companyName;
+    private String companyImageDir;
+    private String adsImageDir;
+    private int minSalary;
+    private int maxSalary;
+    private List<String> tags;
+    private String type;
+    
+    public advertisementModel(){
+        
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
+
+    
+    public int getMinSalary() {
+        return minSalary;
+    }
+
+    public void setMinSalary(int minSalary) {
+        this.minSalary = minSalary;
+    }
+
+    public int getMaxSalary() {
+        return maxSalary;
+    }
+
+    public void setMaxSalary(int maxSalary) {
+        this.maxSalary = maxSalary;
+    }
+    
     public String getTitle() {
         return title;
     }

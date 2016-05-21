@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author sajad
+ * @author Ali
  */
 @Embeddable
 public class MsgboxPK implements Serializable {

@@ -5,6 +5,7 @@
  */
 package com.jobyab.DAO;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -30,6 +31,10 @@ public class CoreDAO<T> {
         
         this.entityClass = entityClass;
     }
+
+    public CoreDAO() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     public T add(T t){
         try {
@@ -44,10 +49,7 @@ public class CoreDAO<T> {
     }
     
     public T read(short id){
-        try {
-         return em.find(entityClass, id);   
-        } catch (Exception e) {
-        return null;
-        }
-    }    
+        return em.find(entityClass, id);
+    }
+    
 }

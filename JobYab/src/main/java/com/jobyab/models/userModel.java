@@ -28,6 +28,21 @@ public class userModel {
     private short userID;
     
     private String kind;
+    
+    private boolean isLogInned;
+    
+        public userModel()
+    {
+        
+    }
+
+    public boolean isLogInned() {
+        return isLogInned;
+    }
+
+    public void setLogInned(boolean isLogInned) {
+        this.isLogInned = isLogInned;
+    }
 
     public short getUserID() {
         return userID;
@@ -67,11 +82,6 @@ public class userModel {
 
     public void setImageDir(String imageDir) {
         this.imageDir = imageDir;
-    }
-    
-    public userModel()
-    {
-        
     }
 
     public String getEmail() {

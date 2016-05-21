@@ -44,19 +44,15 @@ public class logInController extends HttpServlet {
   
         if (!uM.equals(null)){
             HttpSession session =request.getSession();
+            
+            uM.setLogInned(true);
+            
             session.setAttribute("user", uM);
             response.sendRedirect("mainPage.jsp");
         }
-        
-        /*if (query.loginControl(email, password)) {
-            user u = new user(email, password, userType.type.jobSeeker, "", "", "تقی", "تقوی", new Date());
-            HttpSession session =request.getSession();
-            session.setAttribute("user", u);
-            response.sendRedirect("mainPage.jsp");
-        } else {
-            //incorrect password or useranme
-        }*/
-        
-        
+        else{
+            uM.setLogInned(false);
+            response.sendRedirect("index.jsp");
+        }        
     }
 }

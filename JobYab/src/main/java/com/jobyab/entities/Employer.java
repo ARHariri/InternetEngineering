@@ -25,12 +25,13 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author sajad
+ * @author Ali
  */
 @Entity
 @Table(name = "employer")
 @XmlRootElement
 @NamedQueries({
+    @NamedQuery(name = "Employer.findByName", query = "SELECT e FROM Employer e WHERE e.coName = :companyName"),
     @NamedQuery(name = "Employer.findAll", query = "SELECT e FROM Employer e"),
     @NamedQuery(name = "Employer.findByEmployerId", query = "SELECT e FROM Employer e WHERE e.employerId = :employerId"),
     @NamedQuery(name = "Employer.findByCoName", query = "SELECT e FROM Employer e WHERE e.coName = :coName"),
@@ -54,14 +55,10 @@ public class Employer implements Serializable {
     @Size(min = 1, max = 16)
     @Column(name = "co_tel")
     private String coTel;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 200)
+    @Size(max = 200)
     @Column(name = "co_address")
     private String coAddress;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 200)
+    @Size(max = 200)
     @Column(name = "co_image")
     private String coImage;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "coId")
@@ -79,12 +76,10 @@ public class Employer implements Serializable {
         this.employerId = employerId;
     }
 
-    public Employer(Short employerId, String coName, String coTel, String coAddress, String coImage) {
+    public Employer(Short employerId, String coName, String coTel) {
         this.employerId = employerId;
         this.coName = coName;
         this.coTel = coTel;
-        this.coAddress = coAddress;
-        this.coImage = coImage;
     }
 
     public Short getEmployerId() {

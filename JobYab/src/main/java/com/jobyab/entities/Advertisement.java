@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author sajad
+ * @author Ali
  */
 @Entity
 @Table(name = "advertisement")
@@ -39,7 +39,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Advertisement.findAll", query = "SELECT a FROM Advertisement a"),
     @NamedQuery(name = "Advertisement.findByAdId", query = "SELECT a FROM Advertisement a WHERE a.adId = :adId"),
     @NamedQuery(name = "Advertisement.findByAdTitle", query = "SELECT a FROM Advertisement a WHERE a.adTitle = :adTitle"),
-    @NamedQuery(name = "Advertisement.findByAdThumbnail", query = "SELECT a FROM Advertisement a WHERE a.adThumbnail = :adThumbnail"),
     @NamedQuery(name = "Advertisement.findByAdType", query = "SELECT a FROM Advertisement a WHERE a.adType = :adType"),
     @NamedQuery(name = "Advertisement.findByMinSalary", query = "SELECT a FROM Advertisement a WHERE a.minSalary = :minSalary"),
     @NamedQuery(name = "Advertisement.findByMaxSalary", query = "SELECT a FROM Advertisement a WHERE a.maxSalary = :maxSalary"),
@@ -64,11 +63,6 @@ public class Advertisement implements Serializable {
     private String adBody;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 200)
-    @Column(name = "ad_thumbnail")
-    private String adThumbnail;
-    @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "ad_type")
     private String adType;
@@ -80,9 +74,7 @@ public class Advertisement implements Serializable {
     @NotNull
     @Column(name = "maxSalary")
     private int maxSalary;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 200)
+    @Size(max = 200)
     @Column(name = "ad_image")
     private String adImage;
     @JoinTable(name = "ad_tag", joinColumns = {
@@ -103,15 +95,13 @@ public class Advertisement implements Serializable {
         this.adId = adId;
     }
 
-    public Advertisement(Short adId, String adTitle, String adBody, String adThumbnail, String adType, int minSalary, int maxSalary, String adImage) {
+    public Advertisement(Short adId, String adTitle, String adBody, String adType, int minSalary, int maxSalary) {
         this.adId = adId;
         this.adTitle = adTitle;
         this.adBody = adBody;
-        this.adThumbnail = adThumbnail;
         this.adType = adType;
         this.minSalary = minSalary;
         this.maxSalary = maxSalary;
-        this.adImage = adImage;
     }
 
     public Short getAdId() {
@@ -136,14 +126,6 @@ public class Advertisement implements Serializable {
 
     public void setAdBody(String adBody) {
         this.adBody = adBody;
-    }
-
-    public String getAdThumbnail() {
-        return adThumbnail;
-    }
-
-    public void setAdThumbnail(String adThumbnail) {
-        this.adThumbnail = adThumbnail;
     }
 
     public String getAdType() {
