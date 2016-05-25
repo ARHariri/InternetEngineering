@@ -30,10 +30,27 @@ public class TagsDAO {
     }
     
     public List<Tags> readAll(){
-        Query query = em.createQuery(
-                "select * from tags");
-        
-        return (List<Tags>) query.getResultList();
+        try{
+            Query query = em.createNamedQuery("Tags.findAll");
+            
+            return (List<Tags>) query.getResultList();
+        }
+        catch(Exception e){
+            return null;
+        }
+//        return (List<Tags>) query.getResultList();
+    }
+    
+    public Tags readByName(String tagName){
+        try{
+            Query query = em.createNamedQuery("Tags.findByTagName")
+                    .setParameter("tagName", tagName);
+            
+            return (Tags) query.getSingleResult();
+        }
+        catch(Exception e){
+            return null;
+        }
     }
     
 }

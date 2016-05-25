@@ -3,12 +3,13 @@ package com.jobyab.entities;
 import com.jobyab.entities.Employer;
 import com.jobyab.entities.Msgbox;
 import com.jobyab.entities.Tags;
+import java.util.Date;
 import javax.annotation.Generated;
 import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2016-05-21T23:01:33")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2016-05-25T09:50:40")
 @StaticMetamodel(Advertisement.class)
 public class Advertisement_ { 
 
@@ -19,6 +20,7 @@ public class Advertisement_ {
     public static volatile SingularAttribute<Advertisement, String> adBody;
     public static volatile CollectionAttribute<Advertisement, Tags> tagsCollection;
     public static volatile SingularAttribute<Advertisement, String> adTitle;
+    public static volatile SingularAttribute<Advertisement, Date> addedTime;
     public static volatile SingularAttribute<Advertisement, Employer> coId;
     public static volatile CollectionAttribute<Advertisement, Msgbox> msgboxCollection;
     public static volatile SingularAttribute<Advertisement, Integer> minSalary;

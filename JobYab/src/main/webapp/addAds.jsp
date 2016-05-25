@@ -7,13 +7,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.jobyab.models.userModel" %>
 
-<%
-    userModel user = (userModel) request.getSession().getAttribute("user");
-    
-    if(!user.isLogInned())
-        response.sendRedirect("index.jsp");
-%>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -77,12 +70,11 @@
                                                             
                                                             <div class="panel-body">
                                                                 <div style="margin: 15px;">
-                                                                    <input type="textarea"
-                                                                           row="8"
-                                                                           col="200"
+                                                                    <textarea
+                                                                           rows="8"
                                                                            class="persian-label persian-text form-control"
                                                                            name="adsContent"
-                                                                           placeholder="متن آگهی"/>
+                                                                           placeholder="متن آگهی"></textarea>
                                                                 </div>
                                                                 
                                                                 <hr/>

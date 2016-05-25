@@ -52,4 +52,16 @@ public class CoreDAO<T> {
         return em.find(entityClass, id);
     }
     
+    public T mergeAds(T t){
+        try{
+            etx.begin();
+            em.merge(t);
+            etx.commit();
+            
+            return t;
+        }
+        catch(Exception e){
+            return null;
+        }
+    }
 }

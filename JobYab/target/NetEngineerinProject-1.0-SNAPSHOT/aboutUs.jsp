@@ -7,13 +7,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.jobyab.models.userModel" %>
 
-<%
-    userModel user = (userModel) request.getSession().getAttribute("user");
-    
-    if(!user.isLogInned())
-        response.sendRedirect("index.jsp");
-%>
-
 <!DOCTYPE html>
 <html>
 <head>

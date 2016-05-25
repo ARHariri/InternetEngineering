@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.jobyab.models.userModel" %>
-<% userModel user = (userModel) request.getSession().getAttribute("user"); %>
+
 <!DOCTYPE html>
 <html>
 <head>

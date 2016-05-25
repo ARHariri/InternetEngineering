@@ -42,10 +42,18 @@ public class resumeController extends HttpServlet {
         String langs = request.getParameter("langs");
         
         uM.setSkills(skills);
+//        uM.setLangs(langs);
         
         
         List<String> skillList = Arrays.asList(skills.split("\\s*-\\s*"));
         List<String> langList = Arrays.asList(langs.split("\\s*-\\s*"));
+        
+        uM.setSkillsList(skillList);
+//        uM.setLangsList(langList);
+        
+        if (rHandler.addResume(uM)){
+            
+        }
         
     }
 

@@ -7,13 +7,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.jobyab.models.userModel" %>
 
-<%
-    userModel user = (userModel) request.getSession().getAttribute("user");
-    
-    if(!user.isLogInned())
-        response.sendRedirect("index.jsp");
-%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -146,23 +139,70 @@
 <script type="text/javascript">
 	window.onload = function()
 	{
-		//document.getElementById("UserName").innerHTML = "Ali Alavi";
+            //document.getElementById("UserName").innerHTML = "Ali Alavi";
+        
+            var b = document.createElement('B');
+            b.className = "caret";
+            document.getElementById("UserName").appendChild(b);
 
-		var b = document.createElement('B');
-		b.className = "caret";
-		document.getElementById("UserName").appendChild(b);
-
-		//Filter by user kind
-		/*for(var i=0; i<document.getElementsByName("jobSeeker").length; i++)
-		{
-			document.getElementsByName("jobSeeker")[i].style.display = "none";
-		}
-
-		for(var i=0; i<document.getElementsByName("employer").length; i++)
-		{
-			document.getElementsByName("employer")[i].style.display = "inline";
-		}*/
+            //Filter by user kind
+            /*for(var i=0; i<document.getElementsByName("jobSeeker").length; i++)
+            {
+		document.getElementsByName("jobSeeker")[i].style.display = "none";
+            }
+        
+            for(var i=0; i<document.getElementsByName("employer").length; i++)
+            {
+                document.getElementsByName("employer")[i].style.display = "inline";
+            }*/
+            
+            var req;
+            
+            var url = "loadAds?q=" + encodeURIComponent("ads");
+            
+            if(typeof XMLHttpRequest != "undefined"){
+                req = new XMLHttpRequest();
+            }
+            else if(window.ActiveXObject){
+                req = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            
+            req.open("GET",url, true);
+            req.onreadystatechange = callback;
+            req.send(null);
+        
 	};
+        
+        function callback(){
+            if(req.readyState == 4){
+                if(req.status == 200){
+                    
+                    //Parse XML response
+                    var xmlResponse = req.responseXML.getElementsByTagName("ads");
+                    
+                    for(var index=0; index< xmlResponse.length; index++){
+                        //Get title
+                        
+                        //Get companyName
+                        
+                        //Get companyImage
+                        
+                        //Get content
+                        
+                        //Get type
+                        
+                        //Get minSalary
+                        
+                        //Get maxSalary
+                        
+                        //Get adsImage
+                        
+                        //Get tags
+                    }
+                    
+                }
+            }
+        }
 
 	$(function(){
 

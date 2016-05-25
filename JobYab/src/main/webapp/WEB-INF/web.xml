@@ -21,6 +21,10 @@
         <servlet-name>resumeController</servlet-name>
         <servlet-class>com.jobyab.controllers.resumeController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>loadAds</servlet-name>
+        <servlet-class>com.jobyab.controllers.loadAdsController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>logInController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -40,6 +44,10 @@
     <servlet-mapping>
         <servlet-name>resumeController</servlet-name>
         <url-pattern>/resumeController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loadAds</servlet-name>
+        <url-pattern>/loadAds</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

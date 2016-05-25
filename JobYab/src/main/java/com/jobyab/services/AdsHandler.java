@@ -11,6 +11,8 @@ import com.jobyab.entities.Employer;
 import com.jobyab.entities.Tags;
 import java.util.List;
 import com.jobyab.models.advertisementModel;
+import java.awt.Image;
+import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -20,6 +22,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import javax.faces.view.facelets.Tag;
+import javax.imageio.ImageIO;
 import javax.servlet.http.Part;
 import org.apache.commons.io.FileUtils;
 /**
@@ -28,14 +31,46 @@ import org.apache.commons.io.FileUtils;
  */
 public class AdsHandler {
     
+    private Part filePart;
+    
     public AdsHandler(){
         
     }
+
+    public Part getFilePart() {
+        return filePart;
+    }
+
+    public void setFilePart(Part filePart) {
+        this.filePart = filePart;
+    }
     
-    public List<Advertisement> getAds(){
+    public List<advertisementModel> getAds(){
         AdsDAO adsDAO = new AdsDAO();
         
-        return adsDAO.readAll();
+        try{
+            List<Advertisement> allAds = adsDAO.readAll();
+            
+            List<advertisementModel> resultList = new ArrayList<advertisementModel>();
+            
+            for(Advertisement ads : allAds){
+                advertisementModel adsModel = new advertisementModel();
+                
+                adsModel.setTitle(ads.getAdTitle());
+                adsModel.setContent(ads.getAdBody());
+                adsModel.setCompanyName(ads.getCoId().getCoName());
+                adsModel.setMinSalary(ads.getMinSalary());
+                adsModel.setMaxSalary(ads.getMaxSalary());
+                adsModel.setCompanyImageDir(ads.getCoId().getCoImage());
+                adsModel.setAdsImageDir(ads.getAdImage());
+                //Should set link attribute in adsModel (to link to company profile)
+            }
+            
+            return resultList;
+        }
+        catch(Exception e){
+            return null;
+        }
     }
     
     public List<advertisementModel> getAds(int adsNumber){
@@ -92,36 +127,38 @@ public class AdsHandler {
         if(ads == null)
             return false;
         
+        //Saving image
+        if(filePart != null && filePart.getSize() > 0){
+            String dir = saveToPath(filePart, ads.getAdId());
+            
+            if(dir == null)
+                return false;
+            
+            AdsDAO aDAO = new AdsDAO();
+            aDAO.updateImageDir(ads.getAdId(), dir);
+        }
+        
         //Adding tags to tag table
-        if(!addingTags(adsModel.getTags(), ads))
+        if(!addingTags(adsModel.getTags(), ads, adsDAO))
             return false;
         
         return true;
     }
     
-    public String saveToPath(Part filePart){
+    private String saveToPath(Part filePart, short adsID){
         
         try{
-            String filePath = "../../../../webapp/references/images/adsImages";
+            String filePath = "c:\\jobYab Images\\ads\\";
             String fileName = filePart.getSubmittedFileName();
             String fileExtention = fileName.substring(fileName.lastIndexOf('.') + 1);
             
-            File file = new File(filePath);
-            
             InputStream fileContent = filePart.getInputStream();
             
-            //File targetFile = new File(filePath + fileName);
-            File targetFile = File.createTempFile(fileName,
-                                                  fileExtention,
-                                                  file);
+            Image image = ImageIO.read(fileContent);
             
-            byte[] buffer = new byte[fileContent.available()];
-            fileContent.read(buffer);
+            ImageIO.write((RenderedImage) image, fileExtention,new File(filePath + String.valueOf(adsID) + "." + fileExtention));
             
-            OutputStream outputStream = new FileOutputStream(targetFile);
-            outputStream.write(buffer);
-            
-            return filePath + fileName;
+            return filePath + String.valueOf(adsID) + "." + fileExtention;
         }
         catch(Exception e){
             return null;
@@ -129,7 +166,7 @@ public class AdsHandler {
         
     }
     
-    private boolean addingTags(List<String> tagList, Advertisement ads){
+    private boolean addingTags(List<String> tagList, Advertisement ads, CoreDAO<Advertisement> adsDAO){
         
         try{
             TagsDAO tDAO = new TagsDAO();
@@ -147,11 +184,24 @@ public class AdsHandler {
 
 
                 if(tagDetail.containsKey(tag)){
-                    Tags tObj = tagDAO.read(tagDetail.get(tag));
-
-                    Collection<Advertisement> adsCollection = tObj.getAdvertisementCollection();
-
-                    adsCollection.add(ads);
+                    Tags t = tDAO.readByName(tag);
+                    
+                    ads.getTagsCollection().add(t);
+                    
+                    adsDAO.mergeAds(ads);
+//                    Collection<Tags> tagCollection = ads.getTagsCollection();
+//                    
+//                    Tags t = new Tags();
+//                    t.setTagName(tag);
+//                    
+//                    tagCollection.add(t);
+//                    
+//                    ads.setTagsCollection(tagCollection);
+//                    Tags tObj = tagDAO.read(tagDetail.get(tag));
+//
+//                    Collection<Advertisement> adsCollection = tObj.getAdvertisementCollection();
+//
+//                    adsCollection.add(ads);
                 }
                 else{
                     //Add tag Name to tag table
@@ -159,7 +209,16 @@ public class AdsHandler {
                     Tags tObj = new Tags();
                     tObj.setTagName(tag);
 
-                    tagDAO.add(tObj);
+                    tObj = tagDAO.add(tObj);
+                    
+                    ads.getTagsCollection().add(tObj);
+                    
+                    adsDAO.mergeAds(ads);
+//                    Collection<Tags> tagCollection = ads.getTagsCollection();
+//                    
+//                    tagCollection.add(tObj);
+//                    
+//                    ads.setTagsCollection(tagCollection);
                 }
 
             }

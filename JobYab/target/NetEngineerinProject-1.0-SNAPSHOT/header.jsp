@@ -5,6 +5,15 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="com.jobyab.models.userModel" %>
+
+<%
+    userModel user = (userModel) request.getSession().getAttribute("user");
+    
+    if(!user.isLogInned())
+        response.sendRedirect("index.jsp");
+%>
+
 <!DOCTYPE html>
 <html>
     <header>
@@ -54,7 +63,7 @@
                                 <a href="advancedSearch.jsp">جست و جو</a>
                             </li>
                             <li name="jobSeeker">
-                                <a href="#">ارسال رزومه</a>
+                                <a href="userResume.jsp">ارسال رزومه</a>
                             </li>
                                 <%  }
                                     else if(user.getKind().compareToIgnoreCase("employer") == 0) {

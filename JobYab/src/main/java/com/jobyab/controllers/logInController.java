@@ -42,7 +42,7 @@ public class logInController extends HttpServlet {
         String password = request.getParameter("loginpassword");
         userModel uM = lgn.authenticate(email, password);
   
-        if (!uM.equals(null)){
+        if (uM != null){
             HttpSession session =request.getSession();
             
             uM.setLogInned(true);

@@ -11,6 +11,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 /**
@@ -23,7 +24,9 @@ public class SkillsDAO {
     EntityTransaction etx;
     
     public SkillsDAO(){
-        
+        emf = Persistence.createEntityManagerFactory("com.sbu.neteng_NetEngineerinProject_war_1.0-SNAPSHOTPU");
+        em = emf.createEntityManager();
+        etx = em.getTransaction();
     }
     
      public List<Skills> readAll(){

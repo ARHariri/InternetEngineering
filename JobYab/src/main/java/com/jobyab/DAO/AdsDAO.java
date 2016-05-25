@@ -35,4 +35,17 @@ public class AdsDAO {
         return (List<Advertisement>) query.getResultList();
     }
     
+    public Advertisement updateImageDir(short id, String imageDir){
+        Advertisement ads = (Advertisement) em.find(Advertisement.class, id);
+        
+        if(ads == null)
+            return null;
+        
+        etx.begin();
+        ads.setAdImage(imageDir);
+        etx.commit();
+        
+        return ads;
+    }
+    
 }

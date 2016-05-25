@@ -61,13 +61,14 @@ public class addAdsController extends HttpServlet {
         AdsHandler adsHandler = new AdsHandler();
         
         //Save image to a path and get image directory
+        adsHandler.setFilePart(filePart);
 //        String filePath = adsHandler.saveToPath(filePart);
-//        
+        
 //        if(filePath == null){               //Can not save image
 //            response.sendRedirect("addAds.jsp?");
 //            return;
 //        }
-//        
+        
 //        adsModel.setAdsImageDir(filePath);
         
         List<String> tagList = Arrays.asList(tags.split("\\s*-\\s*"));
@@ -80,7 +81,8 @@ public class addAdsController extends HttpServlet {
         adsModel.setCompanyName(uM.getCompanyName());
         
         if(adsHandler.addAds(adsModel)){
-            response.sendRedirect("addAds.jsp?");
+            response.sendRedirect("addAds.jsp");
+            return;
         }
         
         

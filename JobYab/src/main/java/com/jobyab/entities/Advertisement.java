@@ -7,6 +7,7 @@ package com.jobyab.entities;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -23,6 +24,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -42,7 +45,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Advertisement.findByAdType", query = "SELECT a FROM Advertisement a WHERE a.adType = :adType"),
     @NamedQuery(name = "Advertisement.findByMinSalary", query = "SELECT a FROM Advertisement a WHERE a.minSalary = :minSalary"),
     @NamedQuery(name = "Advertisement.findByMaxSalary", query = "SELECT a FROM Advertisement a WHERE a.maxSalary = :maxSalary"),
-    @NamedQuery(name = "Advertisement.findByAdImage", query = "SELECT a FROM Advertisement a WHERE a.adImage = :adImage")})
+    @NamedQuery(name = "Advertisement.findByAdImage", query = "SELECT a FROM Advertisement a WHERE a.adImage = :adImage"),
+    @NamedQuery(name = "Advertisement.findByAddedTime", query = "SELECT a FROM Advertisement a WHERE a.addedTime = :addedTime")})
 public class Advertisement implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -77,6 +81,11 @@ public class Advertisement implements Serializable {
     @Size(max = 200)
     @Column(name = "ad_image")
     private String adImage;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "addedTime")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date addedTime;
     @JoinTable(name = "ad_tag", joinColumns = {
         @JoinColumn(name = "ad_id", referencedColumnName = "ad_id")}, inverseJoinColumns = {
         @JoinColumn(name = "ad_tag", referencedColumnName = "tag_id")})
@@ -95,13 +104,14 @@ public class Advertisement implements Serializable {
         this.adId = adId;
     }
 
-    public Advertisement(Short adId, String adTitle, String adBody, String adType, int minSalary, int maxSalary) {
+    public Advertisement(Short adId, String adTitle, String adBody, String adType, int minSalary, int maxSalary, Date addedTime) {
         this.adId = adId;
         this.adTitle = adTitle;
         this.adBody = adBody;
         this.adType = adType;
         this.minSalary = minSalary;
         this.maxSalary = maxSalary;
+        this.addedTime = addedTime;
     }
 
     public Short getAdId() {
@@ -158,6 +168,14 @@ public class Advertisement implements Serializable {
 
     public void setAdImage(String adImage) {
         this.adImage = adImage;
+    }
+
+    public Date getAddedTime() {
+        return addedTime;
+    }
+
+    public void setAddedTime(Date addedTime) {
+        this.addedTime = addedTime;
     }
 
     @XmlTransient
