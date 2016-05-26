@@ -29,8 +29,52 @@ public class AdsDAO {
     }
     
     public List<Advertisement> readAll(){
-        Query query = em.createQuery(
-                "select * from advertisement");
+        Query query = em.createNamedQuery("Advertisement.findAll");
+        
+        return (List<Advertisement>) query.getResultList();
+    }
+    
+    public List<Advertisement> readByDetails(String tagCnd, String salaryCnd, String otherCnd){
+        
+        String subQueryStr = "";
+        String queryStr = "select * from advertisement";
+        
+        if(tagCnd != null){
+            subQueryStr = "select ad_id from tags"
+                        + "where " + tagCnd;
+            
+            subQueryStr = "select ad_id from ad_tab"
+                        + "where tag_id in " + subQueryStr;
+        }
+        
+        if(tagCnd != null && salaryCnd != null && otherCnd != null){
+            queryStr += "where " + salaryCnd + " and " + otherCnd + 
+                        "and ad_id in " + subQueryStr;
+        }
+        else if(tagCnd == null && salaryCnd != null && otherCnd != null){
+            queryStr += "where " + salaryCnd + " and " + otherCnd;
+        }
+        else if(tagCnd != null && salaryCnd == null && otherCnd != null){
+            queryStr += "where " + otherCnd + 
+                        "and ad_id in " + subQueryStr;
+        }
+        else if(tagCnd != null && salaryCnd != null && otherCnd == null){
+            queryStr += "where " + salaryCnd + 
+                        "and ad_id in " + subQueryStr;
+        }
+        else if(tagCnd == null && salaryCnd == null && otherCnd != null){
+            queryStr += "where " + otherCnd;
+        }
+        else if(tagCnd == null && salaryCnd != null && otherCnd == null){
+            queryStr += "where " + salaryCnd;
+        }
+        else if(tagCnd != null && salaryCnd == null && otherCnd == null){
+            queryStr += "where ad_id in " + subQueryStr;
+        }
+        else if(tagCnd == null && salaryCnd == null && otherCnd == null)
+            return null;
+        
+        Query query = em.createQuery(queryStr);
         
         return (List<Advertisement>) query.getResultList();
     }
@@ -47,5 +91,4 @@ public class AdsDAO {
         
         return ads;
     }
-    
 }

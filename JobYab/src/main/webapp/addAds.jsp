@@ -135,6 +135,7 @@
                                                             </div>
                                             </div>
                                             
+                                                                <% if(request.getParameter("done") == "yes"){ %>
                                             <div class="col-lg-12" id="success_message" style="visibility: collapse;">
                                                 <div class="ui success message persian-label persian-text" style="size: 40px;">
                                                     <div class="header" style="font-family: persianButtonLabel;">
@@ -144,6 +145,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <%} %>
                                                             
                                             <div class="form-group form-group-lg">
 						<div class="col-lg-12">

@@ -64,6 +64,8 @@ public class AdsHandler {
                 adsModel.setCompanyImageDir(ads.getCoId().getCoImage());
                 adsModel.setAdsImageDir(ads.getAdImage());
                 //Should set link attribute in adsModel (to link to company profile)
+                
+                resultList.add(adsModel);
             }
             
             return resultList;

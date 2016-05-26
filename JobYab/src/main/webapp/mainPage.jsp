@@ -93,7 +93,7 @@
 					</div>
 				</div>
 
-				<div class="row" style="margin: 10px;" id="employerAdv" name="employer">
+				<div class="row" style="margin: 10px;" id="employerAdv" name="adsPanels">
 					<div class="col-md-12">
 						<div class="panel panel-default">
 							<div class="panel-heading">
@@ -177,27 +177,116 @@
             if(req.readyState == 4){
                 if(req.status == 200){
                     
+                    var mainParent = document.getElementsByName("adsPanels")[0];
+                    
+                    var brTag = document.createElement("br");
+                    var hrTag = document.createElement("hr");
+                    
                     //Parse XML response
                     var xmlResponse = req.responseXML.getElementsByTagName("ads");
                     
                     for(var index=0; index< xmlResponse.length; index++){
                         //Get title
+                        var title = xmlResponse[index].getElementsByTagName("adsTitle")[0].nodeValue;
                         
                         //Get companyName
+                        var companyName = xmlResponse[index].getElementsByTagName("adsCompanyName")[0].nodeValue;
                         
                         //Get companyImage
+                        var companyImage = xmlResponse[index].getElementsByTagName("adsCompanyImage")[0].nodeValue;
                         
                         //Get content
+                        var content = xmlResponse[index].getElementsByTagName("adsContent")[0].nodeValue;
                         
                         //Get type
+                        var type = xmlResponse[index].getElementsByTagName("adsType")[0].nodeValue;
                         
                         //Get minSalary
+                        var minSalary = xmlResponse[index].getElementsByTagName("adsMinSalary")[0].nodeValue;
                         
                         //Get maxSalary
+                        var maxSalary = xmlResponse[index].getElementsByTagName("adsMaxSalary")[0].nodeValue;
                         
                         //Get adsImage
+                        var image = xmlResponse[index].getElementsByTagName("adsImage")[0].nodeValue;
                         
                         //Get tags
+                        var tags = xmlResponse[index].getElementsByTagName("adsTag");
+                        
+                        //Create html object
+                        
+                        //body of ads
+                        var div = document.createElement("div");
+                        div.className = "col-md-12";
+                        
+                        var panelDefaultDiv = document.createElement("div");
+                        panelDefaultDiv.className = "panel panel-default";
+                        div.appendChild(panelDefaultDiv);
+                        
+                        var panelHeadingDiv = document.createElement("div");
+                        panelHeadingDiv.className = "panel-heading";
+                        panelDefaultDiv.appendChild(panelHeadingDiv);
+                        
+                        var div1 = document.createElement("div");
+                        div1.className = "row";
+                        panelHeadingDiv.appendChild(div1);
+                        
+                        var div2 = document.createElement("div");
+                        div2.className = "col-md-2";
+                        div1.appendChild(div2);
+                        
+                        var img = document.createElement("img");
+                        img.src = companyImage;
+                        img.width = "80px";
+                        img.height = "80px"
+                        div2.appendChild(img);
+                        
+                        var div3 = document.createElement("div");
+                        div3.className = "col-md-10";
+                        div3.style = "margin-top: 20px;";
+                        
+                        var titleLabel = document.createElement("label");
+                        titleLabel.className = "persian-label persian-heading";
+                        titleLabel.value = title;
+                        
+                        div3.appendChild(titleLabel);
+                        div3.appendChild(brTag);
+                        
+                        var companyNameLabel = document.createElement("label");
+                        companyNameLabel.className = "persian-label persian-heading";
+                        companyNameLabel.style = "font-size: 20px;";
+                        companyNameLabel.value = companyName;
+                        
+                        div3.appendChild(companyNameLabel);
+                        
+                        div1.appendChild(div3);
+                        
+                        //body of ads
+                        var panelBodyDiv = document.createElement("div");
+                        panelBodyDiv.className = "panel-body";
+                        panelDefaultDiv.appendChild(panelBodyDiv);
+                        
+                        var div4 = document.createElement("div");
+                        div4.style = "margin: 15px;";
+                        
+                        if(image != "null"){
+                            var bodyImage = document.createElement("img");
+                            img.src = image;
+                            img.width = "300px";
+                            img.height = "100px";
+                            div4.appendChild(bodyImage);
+                            div4.appendChild(hrTag);
+                        }
+                        
+                        var bodyLabel = document.createElement("label");
+                        bodyLabel.className = "persian-label persian-text";
+                        div4.appendChild(bodyLabel);
+                        div4.appendChild(hrTag);
+                        
+                        panelBodyDiv.appendChild(div4);
+                        
+                        
+                        mainParent.appendChild(div);
                     }
                     
                 }

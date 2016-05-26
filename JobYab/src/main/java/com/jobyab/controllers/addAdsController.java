@@ -81,9 +81,11 @@ public class addAdsController extends HttpServlet {
         adsModel.setCompanyName(uM.getCompanyName());
         
         if(adsHandler.addAds(adsModel)){
-            response.sendRedirect("addAds.jsp");
+            response.sendRedirect("addAds.jsp?done=yes");
             return;
         }
+        
+        response.sendRedirect("addAds.jsp?done=no");
         
         
     }
