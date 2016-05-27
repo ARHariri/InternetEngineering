@@ -5,6 +5,7 @@
  */
 package com.jobyab.controllers;
 
+import com.google.gson.Gson;
 import com.jobyab.services.AdsHandler;
 import com.jobyab.models.advertisementModel;
 import java.io.IOException;
@@ -33,16 +34,19 @@ public class loadAdsController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String requestKind = request.getParameter("q");
+        String requestKind = request.getParameter("action");
         
-        if(requestKind.compareToIgnoreCase("ads") == 0){
-            
-            response.setContentType("text/xml");
+        if(requestKind.compareToIgnoreCase("load") == 0){
             
             AdsHandler adsHandler = new AdsHandler();
             List<advertisementModel> adsList = adsHandler.getAds();
             
-            response.getWriter().write(adsXML(adsList));
+            String json = new Gson().toJson(adsList);
+            
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(json);
+            //response.getWriter().write(adsXML(adsList));
         }
     }
     
@@ -61,33 +65,33 @@ public class loadAdsController extends HttpServlet {
     }
     
     
-    private String adsXML(List<advertisementModel> adsList){
-        
-        String result = "";
-        
-        for(advertisementModel adsModel : adsList){
-            
-            result += "<ads>";
-            result += "<adsTitle>" + adsModel.getTitle() + "</adsTitle>";
-            result += "<adsCompanyName>" + adsModel.getCompanyName()+ "</adsCompanyName>";
-            result += "<adsCompanyImage>" + adsModel.getCompanyImageDir()+ "</adsCompanyImage>";
-            result += "<adsContent>" + adsModel.getContent()+ "</adsContent>";
-            result += "<adsType>" + adsModel.getType()+ "</adsType>";
-            result += "<adsMinSalary>" + adsModel.getMinSalary()+ "</adsMinSalary>";
-            result += "<adsMaxSalary>" + adsModel.getMaxSalary()+ "</adsMaxSalary>";
-            
-            if(adsModel.getAdsImageDir() == null)
-                result += "<adsImage>null</adsImage>";
-            else
-                result += "<adsImage>" + adsModel.getAdsImageDir() + "</adsImage>";
-            
-            for(String tag : adsModel.getTags()){
-                result += "<adsTag>" + tag + "</adsTag>";
-            }
-            
-            result += "</ads>";
-        }
-        
-        return result;
-    }
+//    private String adsXML(List<advertisementModel> adsList){
+//        
+//        String result = "";
+//        
+//        for(advertisementModel adsModel : adsList){
+//            
+//            result += "<ads>";
+//            result += "<adsTitle>" + adsModel.getTitle() + "</adsTitle>";
+//            result += "<adsCompanyName>" + adsModel.getCompanyName()+ "</adsCompanyName>";
+//            result += "<adsCompanyImage>" + adsModel.getCompanyImageDir()+ "</adsCompanyImage>";
+//            result += "<adsContent>" + adsModel.getContent()+ "</adsContent>";
+//            result += "<adsType>" + adsModel.getType()+ "</adsType>";
+//            result += "<adsMinSalary>" + adsModel.getMinSalary()+ "</adsMinSalary>";
+//            result += "<adsMaxSalary>" + adsModel.getMaxSalary()+ "</adsMaxSalary>";
+//            
+//            if(adsModel.getAdsImageDir() == null)
+//                result += "<adsImage>null</adsImage>";
+//            else
+//                result += "<adsImage>" + adsModel.getAdsImageDir() + "</adsImage>";
+//            
+//            for(String tag : adsModel.getTags()){
+//                result += "<adsTag>" + tag + "</adsTag>";
+//            }
+//            
+//            result += "</ads>";
+//        }
+//        
+//        return result;
+//    }
 }

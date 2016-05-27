@@ -173,13 +173,13 @@ public class search {
     private String salaryWhere(int minSalary, int maxSalary){
         
         if(searchByMinSalary && searchByMaxSalary)
-            return "minSalary = " + minSalary
-                   + "and maxSalary = " + maxSalary;
+            return "minSalary >= " + minSalary
+                   + "and maxSalary <= " + maxSalary;
         
         else if(searchByMinSalary && !searchByMaxSalary)
-            return "minSalary = " + minSalary;
+            return "minSalary >= " + minSalary;
         else if(!searchByMinSalary && searchByMaxSalary)
-            return "maxSalary = " + maxSalary;
+            return "maxSalary <= " + maxSalary;
         else if(!searchByMinSalary && !searchByMaxSalary)
             return null;
         

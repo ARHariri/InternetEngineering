@@ -22,7 +22,7 @@
         <servlet-class>com.jobyab.controllers.resumeController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>loadAds</servlet-name>
+        <servlet-name>loadAdsController</servlet-name>
         <servlet-class>com.jobyab.controllers.loadAdsController</servlet-class>
     </servlet>
     <servlet>
@@ -50,8 +50,8 @@
         <url-pattern>/resumeController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>loadAds</servlet-name>
-        <url-pattern>/loadAds</url-pattern>
+        <servlet-name>loadAdsController</servlet-name>
+        <url-pattern>/loadAdsController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>searchController</servlet-name>

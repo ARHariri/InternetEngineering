@@ -2,6 +2,7 @@ com\jobyab\entities\Jobseeker.class
 com\jobyab\entities\Tags.class
 com\jobyab\models\advertisementModel.class
 com\jobyab\controllers\addAdsController.class
+com\jobyab\controllers\searchController.class
 com\jobyab\models\userModel.class
 com\jobyab\controllers\userProfileController.class
 com\jobyab\DAO\employerDAO.class
@@ -18,6 +19,7 @@ com\jobyab\entities\MsgboxPK_.class
 com\jobyab\entities\Advertisement_.class
 com\jobyab\entities\Tags_.class
 com\jobyab\entities\User.class
+com\jobyab\services\search.class
 com\jobyab\services\AdsHandler.class
 com\jobyab\services\ResumeHandler.class
 com\jobyab\entities\MsgboxPK.class

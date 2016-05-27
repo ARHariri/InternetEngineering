@@ -111,7 +111,19 @@ public class AdsHandler {
         
         ads.setAdTitle(adsModel.getTitle());
         ads.setAdBody(adsModel.getContent());
-        ads.setAdType(adsModel.getType());
+        
+        switch(adsModel.getType()){
+            case "fullTime": ads.setAdType("تمام وقت");
+                break;
+            case "partTile": ads.setAdType("نیمه وقت");
+                break;
+            case "remote": ads.setAdType("دورکاری");
+                break;
+            case "training": ads.setAdType("کارآموزی");
+                break;
+                
+        }
+        
         ads.setMaxSalary(adsModel.getMaxSalary());
         ads.setMinSalary(adsModel.getMinSalary());
         ads.setAdImage(adsModel.getAdsImageDir());
@@ -150,7 +162,11 @@ public class AdsHandler {
     private String saveToPath(Part filePart, short adsID){
         
         try{
-            String filePath = "c:\\jobYab Images\\ads\\";
+            //new File(desiredPath + "\\image\\ads").mkdirs();
+            
+            
+            String filePath = "C:\\Users\\Ali\\Documents\\IE\\InternetEngineering\\"
+                            + "JobYab\\src\\main\\webapp\\references\\images\\adsImages\\";
             String fileName = filePart.getSubmittedFileName();
             String fileExtention = fileName.substring(fileName.lastIndexOf('.') + 1);
             
@@ -160,7 +176,7 @@ public class AdsHandler {
             
             ImageIO.write((RenderedImage) image, fileExtention,new File(filePath + String.valueOf(adsID) + "." + fileExtention));
             
-            return filePath + String.valueOf(adsID) + "." + fileExtention;
+            return "references/images/adsImages/" + String.valueOf(adsID) + "." + fileExtention;
         }
         catch(Exception e){
             return null;
