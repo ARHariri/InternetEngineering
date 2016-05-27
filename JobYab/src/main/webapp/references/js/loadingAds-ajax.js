@@ -41,7 +41,7 @@ jQuery(document).ready(function (){
                 
                 var $companyNameLabel = $("<label>", {class: "persian-label persian-heading"});
                 $companyNameLabel.css("font-size", "20px");
-                $companyNameLabel.text(ads.companyName);
+                $companyNameLabel.text("شرکت: " + ads.companyName);
                 $adsHeadingContent.append($companyNameLabel);
                 
                 $adsHeadingContent.appendTo($rowDiv);
@@ -58,7 +58,7 @@ jQuery(document).ready(function (){
                 $div1.css("margin", "15px");
                 
                 //Check the image of ads value
-                if(ads.adsImageDir != "null"){
+                if(ads.adsImageDir !== "null"){
                     var $adsImg = $("<img>");
                     $adsImg.attr('src', ads.adsImageDir);
                     $adsImg.appendTo($div1);
@@ -75,19 +75,19 @@ jQuery(document).ready(function (){
                 $("<hr>").appendTo($div1);
                 
                 var $typeLabel = $("<label>", {class: "persian-label persian-text"});
-                $typeLabel.text("نوع کار:" + ads.type);
+                $typeLabel.text("نوع کار: " + ads.type);
                 $typeLabel.appendTo($div1);
                 
                 $("<hr>").appendTo($div1);
                 
                 var $minSalaryLabel = $("<label>", {class: "persian-label persian-text"});
-                $minSalaryLabel.text("کمترین حقوق:" + ads.minSalary);
+                $minSalaryLabel.text("کمترین حقوق: " + ads.minSalary);
                 $minSalaryLabel.appendTo($div1);
                 
                 $("<br>").appendTo($div1);
                 
                 var $maxSalaryLabel = $("<label>", {class: "persian-label persian-text"});
-                $maxSalaryLabel.text("بیشترین حقوق" + ads.maxSalary);
+                $maxSalaryLabel.text("بیشترین حقوق: " + ads.maxSalary);
                 $maxSalaryLabel.appendTo($div1);
                 
                 

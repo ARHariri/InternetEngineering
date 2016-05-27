@@ -63,6 +63,7 @@ public class AdsHandler {
                 adsModel.setMaxSalary(ads.getMaxSalary());
                 adsModel.setCompanyImageDir(ads.getCoId().getCoImage());
                 adsModel.setAdsImageDir(ads.getAdImage());
+                adsModel.setType(ads.getAdType());;
                 //Should set link attribute in adsModel (to link to company profile)
                 
                 resultList.add(adsModel);
@@ -115,7 +116,7 @@ public class AdsHandler {
         switch(adsModel.getType()){
             case "fullTime": ads.setAdType("تمام وقت");
                 break;
-            case "partTile": ads.setAdType("نیمه وقت");
+            case "partTime": ads.setAdType("نیمه وقت");
                 break;
             case "remote": ads.setAdType("دورکاری");
                 break;

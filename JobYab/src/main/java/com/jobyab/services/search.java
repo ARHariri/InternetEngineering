@@ -24,12 +24,12 @@ public class search {
     private String title;
     private String jobKind;
     
-    private boolean searchByTag;
-    private boolean searchByMinSalary;
-    private boolean searchByMaxSalary;
-    private boolean searchByJobTime;
-    private boolean searchByTitle;
-    private boolean searchByJobKind;
+    private boolean searchByTag = false;
+    private boolean searchByMinSalary = false;
+    private boolean searchByMaxSalary = false;
+    private boolean searchByJobTime = false;
+    private boolean searchByTitle = false;
+    private boolean searchByJobKind = false;
     
     public search(){
         
@@ -160,11 +160,11 @@ public class search {
         String result = "";
         
         if(tagList.size() >= 1){
-            result = " tag_name = " + tagList.get(0);
+            result = " tag_name = '" + tagList.get(0) + "' ";
         }
         
         for(int index=1; index<tagList.size(); index++){
-            result += " or tag_name = " + tagList.get(index);
+            result += " or tag_name = '" + tagList.get(index) + "' ";
         }
         
         return result;
@@ -174,7 +174,7 @@ public class search {
         
         if(searchByMinSalary && searchByMaxSalary)
             return "minSalary >= " + minSalary
-                   + "and maxSalary <= " + maxSalary;
+                   + " and maxSalary <= " + maxSalary;
         
         else if(searchByMinSalary && !searchByMaxSalary)
             return "minSalary >= " + minSalary;
@@ -189,24 +189,24 @@ public class search {
     private String restWhere(String jobTime, String title, String jobKind){
         
         if(searchByJobTime && searchByTitle && searchByJobKind)
-            return "ad_type = " + jobTime +
-                   "ad_title like %" + title + "%" +
-                   "ad_body like %" + jobKind + "%";
+            return "ad_type = '" + jobTime + "' " +
+                   "ad_title like '%" + title + "%' " +
+                   "ad_body like '%" + jobKind + "%' ";
         else if(!searchByJobTime && searchByTitle && searchByJobKind)
-            return "ad_title like %" + title + "%" +
-                   "ad_body like %" + jobKind + "%";
+            return "ad_title like '%" + title + "%' " +
+                   "ad_body like '%" + jobKind + "%' ";
         else if(searchByJobTime && !searchByTitle && searchByJobKind)
-            return "ad_type = " + jobTime +
-                   "ad_body like %" + jobKind + "%";
+            return "ad_type = '" + jobTime + "' " + 
+                   "ad_body like '%" + jobKind + "%'";
         else if(searchByJobTime && searchByTitle && !searchByJobKind)
-            return "ad_type = " + jobTime +
-                   "ad_title like %" + title + "%";
+            return "ad_type = '" + jobTime + "' " + 
+                   "ad_title like '%" + title + "%'";
         else if(!searchByJobTime && !searchByTitle && searchByJobKind)
-            return "ad_body like %" + jobKind + "%";
+            return "ad_body like '%" + jobKind + "%'";
         else if(!searchByJobTime && searchByTitle && !searchByJobKind)
-            return "ad_title like %" + title + "%";
+            return "ad_title like '%" + title + "%'";
         else if(searchByJobTime && !searchByTitle && !searchByJobKind)
-            return "ad_type = " + jobTime;
+            return "ad_type = '" + jobTime + "' ";
         else if(!searchByJobTime && !searchByTitle && !searchByJobKind)
             return null;
         

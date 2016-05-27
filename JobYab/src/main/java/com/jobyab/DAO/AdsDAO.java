@@ -37,7 +37,7 @@ public class AdsDAO {
     public List<Advertisement> readByDetails(String tagCnd, String salaryCnd, String otherCnd){
         
         String subQueryStr = "";
-        String queryStr = "select * from advertisement";
+        String queryStr = "select * from advertisement ";
         
         if(tagCnd != null){
             subQueryStr = "select ad_id from tags"
@@ -74,7 +74,8 @@ public class AdsDAO {
         else if(tagCnd == null && salaryCnd == null && otherCnd == null)
             return null;
         
-        Query query = em.createQuery(queryStr);
+        
+        Query query = em.createNativeQuery(queryStr, Advertisement.class);
         
         return (List<Advertisement>) query.getResultList();
     }

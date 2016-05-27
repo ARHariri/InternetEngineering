@@ -21,12 +21,14 @@
 	<link rel="stylesheet" type="text/css" href="references/css/bootstrap.rtl.min.css">
 	<link rel="stylesheet" type="text/css" href="references/css/style.css">
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
 	<script type="text/javascript" src="references/js/bootstrap.js"></script>
 	<script type="text/javascript" src="references/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="references/js/npm.js"></script>
 	<script type="text/javascript" src="references/js/jquery.min.js"></script>
 	<script type="text/javascript" src="references/js/jquery-1.11.1.js"></script>
 	<script type="text/javascript" src="references/js/bootstrap.rtl.min.js"></script>
+	<script type="text/javascript" src="references/js/searchResult-ajax.js"></script>
 
 
 </head>
@@ -41,31 +43,50 @@
                         <!--Right side bar-->
                         <%@include file="rightSideBar.jsp" %>
                         
-		<div class="col-md-9">
+		<div class="col-md-9" id="searchFields">
 				<div class="text-info text-center" style="background: #FFFFB2; font-size: 18px; margin-top: 15px">
 				<p>کاربر گرامی، لطفا موارد زیر را به دقت پر کنید تا نتایج بهتری را دریافت کنید.</p>
-				<p>در هر مورد، با استفاده از "," موارد مختلف را از هم جدا کنید</p></div>
+				<p>در هر مورد، با استفاده از "-" موارد مختلف را از هم جدا کنید</p></div>
 				<div class="list-group-item">
 					<h3 class="page-header text-info"><strong>کلمات کلیدی</strong></h3>
 					<p class="text-info text-center bg-info" style="font-size: 18px; margin-top: 15px">نتایج خود را به لینکهایی اختصاص دهید که کلمات کلیدی خاصی را داشته باشند</p>
-                                        <form class="form-horizontal persian-form" action="" method="get">
+                                        <form id="searchForm" class="form-horizontal persian-form" action="" method="post">
                                             <label for="username" style="font-size: 16px">عنوان آگهی: </label>
-                                            <input type="text" class="form-control persian-textbox" placeholder="شامل موارد" id="coName" name="titleInclude"/>
-                                            <label for="username" style="font-size: 16px">محتوای آگهی: </label>
-                                            <input type="text" class="form-control persian-textbox" placeholder="شامل موارد" id="coName" name="bodyInclude"/>
-                                            <label for="username" style="font-size: 16px">شرکت متقاضی: </label>
-                                            <input type="text" class="form-control persian-textbox" placeholder="نام شرکت" id="coName" name="companyName"/>
-                                            <label for="username" style="font-size: 16px">موارد زیر را نداشته باشد: </label>
-                                            <input type="text" class="form-control persian-textbox" placeholder="" id="coName"/>
-                                            <label for="username" style="font-size: 16px">عبارت دقیق زیر را داشته باشد:</label>
-                                            <input type="text" class="form-control persian-textbox" placeholder="" id="coName"/>
-
+                                            <input type="text" class="form-control persian-textbox" placeholder="شامل کلمه" id="coName" name="titleInclude"/>
+                                            <label for="username" style="font-size: 16px">سمت شغلی: </label>
+                                            <input type="text" class="form-control persian-textbox" placeholder="شامل کلمه" id="coName" name="bodyInclude"/>
+                                            <label for="username" style="font-size: 16px">شامل برچسب های:</label>
+                                            <input type="text" class="form-control persian-textbox" placeholder="برچسب" id="coName" name="tagInclude"/>
+                                            <label for="username" style="font-size: 16px">نوع کار</label>
+                                            <select id="selectbasic" name="adsType" class="form-control">
+                                                <option value="fullTime">تمام وقت</option>
+                                                <option value="partTile">نیمه وقت</option>
+                                                <option value="remote">دورکاری</option>
+                                                <option value="training">کارآموزی</option>
+                                            </select>
+                                            
                                             <h3 class="page-header text-info"><strong>میزان حقوق</strong></h3>
                                             <input type="number" class="form-control" placeholder="کمترین" name="minSalary"/>
                                             <input type="number" class="form-control" placeholder="بیشترین" name="maxSalary"/>
                                             
-                                            <input type="submit" value="بگرد" id="addButton" style="width:100%; margin-top: 15px;" />
+                                            <input id="submitSearch" type="submit" value="بگرد" style="margin: 15px;" />
                                         </form>
+                                        
+                                        <div class="col-md-9">
+                                            <div class="row" style="margin: 10px;" id="notFoundLabel" style="visibility: collapse;">
+                                                <div class="col-sm-12">
+                                                    <div class="ui negative message persian-label persian-text" style="size: 40px;">
+                                                        <div class="header" style="font-family: persianButtonLabel;">
+                                                            هیج آگهی مطابق با موارد گفته شد یافت نشد
+                                                        </div>
+                                                        <p>لطفا اطلاعات مورد جست و جو را تغییر دهید</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row" style="margin: 10px;" id="adsPanels">
+                                            </div>
+                                        </div>
 				</div>
 			</div>
 		</div>

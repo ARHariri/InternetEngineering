@@ -95,7 +95,7 @@
                                                                     <div class="col-md-4">
                                                                         <select id="selectbasic" name="adsType" class="form-control">
                                                                             <option value="fullTime">تمام وقت</option>
-                                                                            <option value="partTile">نیمه وقت</option>
+                                                                            <option value="partTime">نیمه وقت</option>
                                                                             <option value="remote">دورکاری</option>
                                                                             <option value="training">کارآموزی</option>
                                                                         </select>
